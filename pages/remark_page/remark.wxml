@@ -30,7 +30,7 @@
     <view class="conts">
       <textarea class="areas" id="description" placeholder="{{topic}}" value='{{introduce}}' maxlength="{{max}}" bindinput="inputs" fixed='true' cursor-spacing="24rpx">
       </textarea>
-      <image class="convey" src="../../resources/sent.png"></image>
+      <image class="convey" src="../../resources/sent.png" bindtap='publishMainComment'></image>
     </view>
   </view>
 
@@ -46,11 +46,10 @@
           <view class="nameTime">
             <a class="remark_1_nickname">{{item.fromname}}</a>
             <text>{{text}}</text>
-            <a class="publish_time">2019/5/4 17:03</a>
+            <a class="publish_time">{{item.createTime}}</a>
           </view>
           <view class="remark_iconArea" bindtap='to_commit' data-vid="{{index}}">
             <image class="remark_icon" src="../../resources/comments.png" data-vid="{{index}}"></image>
-            <a class="comments_num" data-vid="{{index}}">3</a>
           </view>
         </view>
         <view class="remark_1_area">

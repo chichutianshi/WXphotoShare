@@ -7,16 +7,16 @@
   <view class="remark_1" >
     <view class="gotLine">
       <view class="remark_1_author">
-        <image class="remark_1_photo" src="../../resources/Ashe.jpg"></image>
+        <image class="remark_1_photo" src="{{mainComment.fromURL}}"></image>
         <view class="nameTime">
-          <a class="remark_1_nickname">艾莎</a>
+          <a class="remark_1_nickname">{{mainComment.fromname}}</a>
           <text>{{text}}</text>
-          <a class="publish_time">2019/5/4 17:03</a>
+          <a class="publish_time">{{mainComment.createTime}}</a>
         </view>
       </view>
       <view class="remark_1_area">
         <a class="remark_1_content">
-          adjfhadgjlakdjfkajdlfkjsdhfa阿道夫哈的红发杰克顶个哈看见电视剧解放
+          {{mainComment.content}}
         </a>
       </view>
     </view>
@@ -24,16 +24,16 @@
     <block wx:for="{{sonComments}}" wx:key="">
       <view class="remark_son">
         <view class="remark_son_author">
-          <image class="remark_son_photo" src="{{item.avatarUrl}}"></image>
+          <image class="remark_son_photo" src="{{item.fromURL}}"></image>
           <view class="nameTime">
-            <a class="remark_son_nickname">{{item.nickname}}</a>
+            <a class="remark_son_nickname">{{item.fromname}}</a>
             <text>{{text}}</text>
-            <a class="publish_time">2019/5/4 17:03</a>
+            <a class="publish_time">{{item.createTime}}</a>
           </view>
         </view>
         <view class="remark_son_area">
           <a class="remark_son_content">
-            {{item.comment}}
+            {{item.content}}
           </a>
         </view>
       </view>
@@ -46,8 +46,8 @@
 </view>
 <view class="useColor">
   <view class="conts">
-    <textarea class="areas" id="description" placeholder="{{topic}}" value='{{introduce}}' maxlength="{{max}}" bindinput="inputs" fixed='true' cursor-spacing="24rpx">
+    <textarea class="areas" id="description" placeholder="{{topic}}" value='{{introduce}}' maxlength="{{max}}" bindinput="inputs" fixed='true' cursor-spacing="24rpx" bindinput="inputs">
     </textarea>
-    <image class="convey" src="../../resources/sent.png"></image>
+    <image class="convey" src="../../resources/sent.png" bindtap='publishSonComment'></image>
   </view>
 </view>

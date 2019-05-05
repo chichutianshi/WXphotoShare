@@ -6,42 +6,7 @@ Page({
   data: {
     rawData: {},
     text: '\n',
-    mainComments: [{
-        fromURL: "http://vpic.video.qq.com/19254956/m0017iz4vuk_ori_1.jpg",
-        fromname: "cyka",
-        content: "骄傲的法拉第哈德公交卡大家嘎斯角度来讲打开了放假啊十点零分ioooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-      },
-      {
-        fromURL: "http://vpic.video.qq.com/19254956/m0017iz4vuk_ori_1.jpg",
-        fromname: "艾莎",
-        content: "骄傲的法拉第哈德公交卡大家嘎斯角度来讲打开了放假啊十点零分ioooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-      },
-      {
-        fromURL: "http://vpic.video.qq.com/19254956/m0017iz4vuk_ori_1.jpg",
-        fromname: "艾莎",
-        content: "骄傲的法拉第哈德公交卡大家嘎斯角度来讲打开了放假啊十点零分ioooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-      },
-      {
-        fromURL: "http://vpic.video.qq.com/19254956/m0017iz4vuk_ori_1.jpg",
-        fromname: "艾莎",
-        content: "骄傲的法拉第哈德公交卡大家嘎斯角度来讲打开了放假啊十点零分ioooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-      },
-      {
-        fromURL: "http://vpic.video.qq.com/19254956/m0017iz4vuk_ori_1.jpg",
-        fromname: "艾莎",
-        content: "骄傲的法拉第哈德公交卡大家嘎斯角度来讲打开了放假啊十点零分ioooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-      },
-      {
-        fromURL: "http://vpic.video.qq.com/19254956/m0017iz4vuk_ori_1.jpg",
-        fromname: "艾莎",
-        content: "骄傲的法拉第哈德公交卡大家嘎斯角度来讲打开了放假啊十点零分ioooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-      },
-      {
-        fromURL: "http://vpic.video.qq.com/19254956/m0017iz4vuk_ori_1.jpg",
-        fromname: "艾莎",
-        content: "骄傲的法拉第哈德公交卡大家嘎斯角度来讲打开了放假啊十点零分ioooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-      },
-    ],
+    mainComments: [],
     imgUrls: [],
     indicatorDots: false,
     autoplay: true,
@@ -86,24 +51,24 @@ Page({
       photoId: options.photoId,
       thirdSessionKey: options.thirdSessionKey
     })
-    console.log(that.data.thirdSessionKey)
-    console.log(options.like)
-    // wx.request({
-    //   url: 'https://www.xqdiary.top/sp/getMainPhotoComment',
-    //   data: {
-    //     photoId: this.data.photoId,
-    //     commentIndex: this.data.commentIndex
-    //   },
-    //   success: (res) => {
-    //     that.setData({
-    //       mainComments: res.data,
-    //       commentIndex: that.data.commentIndex + 10
-    //     })
-    //   },
-    //   fail: (res) => {
+    // console.log(that.data.thirdSessionKey)
+    // console.log(options.like)
+    wx.request({
+      url: 'https://www.xqdiary.top/sp/getMainPhotoComment',
+      data: {
+        photoId: this.data.photoId,
+        commentIndex: this.data.commentIndex
+      },
+      success: (res) => {
+        that.setData({
+          mainComments: res.data,
+          commentIndex: that.data.commentIndex + 10
+        })
+      },
+      fail: (res) => {
 
-    //   }
-    // })
+      }
+    })
   },
 
   /**
@@ -147,14 +112,81 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    console.log('onPullDownRefresh', '下拉刷新....');
+    this.reloadCommnets()
+    wx.stopPullDownRefresh()
   },
 
+  reloadCommnets: function() {
+    let that = this
+    that.setData({
+      commentIndex: 0,
+      mainComments: []
+    })
+    wx.request({
+      url: 'https://www.xqdiary.top/sp/refreshComments',
+      data: {
+        photoId: that.data.photoId
+      },
+      success: (res) => {
+        that.setData({
+          mainComments: res.data,
+          commentIndex: that.data.commentIndex + 10
+        })
+        wx.showToast({
+          title: '刷新成功',
+          icon: "none",
+          duration: 1200
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: '请求失败，请稍后再试',
+          icon: "none",
+          duration: 1500
+        })
+      }
+    })
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    wx.showLoading({
+      title: '加载中...',
+    })
+    this.loadMoreComments()
+  },
+  loadMoreComments: function() {
+    let that = this
+    wx.request({
+      url: 'https://www.xqdiary.top/sp/getMainPhotoComment',
+      data: {
+        photoId: that.data.photoId,
+        commentIndex: that.data.commentIndex
+      },
+      success: (res) => {
+        if (res.data != '') {
+          console.log(res.data)
+          let comments=res.data
+          let mainComments = that.data.mainComments
+          that.setData({
+            mainComments: mainComments.push(comments)
+          })
+          wx.hideLoading()
+        } else {
+          wx.hideLoading()
+          wx.showToast({
+            icon: 'none',
+            title: '到底了',
+            duration: 2000
+          })
+        }
+      },
+      fail: (res) => {
+        wx.hideLoading()
+      }
+    })
   },
 
   /**
@@ -194,8 +226,7 @@ Page({
 
     if (len > this.data.max) return;
     // 当输入框内容的长度大于最大长度限制（max)时，终止setData()的执行
-    this.setData({
-      currentWordNumber: len, //当前字数  
+    this.setData({ 
       pubComment: value
     });
   },
@@ -203,15 +234,19 @@ Page({
   publishMainComment: function() {
     let that = this
     let rawData = JSON.parse(this.data.rawData)
-    // console.log(that.data.thirdSessionKey)
-    // console.log(rawData.nickName)
-    // console.log(rawData.avatarUrl)
+    console.log(that.data.thirdSessionKey)
+    console.log(rawData.nickName)
+    console.log(rawData.avatarUrl)
+    console.log(that.data.photoId)
+    console.log(that.data.pubComment)
     wx.request({
       url: 'https://www.xqdiary.top/sp/publishMainComment',
       data: {
         thirdSessionKey: that.data.thirdSessionKey,
         content: that.data.pubComment,
-        photoId: that.data.photoId
+        photoId: that.data.photoId,
+        fromURL: rawData.avatarUrl,
+        fromname: rawData.nickName
       },
       success: (res) => {
         console.log(res.data)
@@ -220,7 +255,8 @@ Page({
             mainComments: that.data.mainComments.push({
               fromname: rawData.nickName,
               fromURL: rawData.avatarUrl,
-              content: that.data.pubComment
+              content: that.data.pubComment,
+              createTime:"1分钟内"
             })
           })
         } else {

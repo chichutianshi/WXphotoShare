@@ -18,7 +18,7 @@ Page({
       if (e.target.dataset.vid != undefined) {
         // console.log(note.likeNum)
         note.likeNum = note.likeNum + 1
-        note.like=true
+        note.like = true
         notes[e.target.dataset.vid] = note
         that.setData({
           note: notes,
@@ -49,7 +49,7 @@ Page({
         success: (res) => {
           //console.log(res.data.photoUrls)
           wx.navigateTo({
-            url: '../remark_page/remark?photoUrls=' + JSON.stringify(res.data.photoUrls) + "&photoId=" + this.data.note[index].photoId + "&introduce=" + this.data.note[index].instruction + "&avatarURL=" + this.data.note[index].avatarURL + "&nickname=" + this.data.note[index].nickname + "&likeNum=" + this.data.note[index].likeNum + "&like=" + this.data.note[index].like +"&thirdSessionKey="+this.data.thirdSessionKey,
+            url: '../remark_page/remark?photoUrls=' + JSON.stringify(res.data.photoUrls) + "&photoId=" + this.data.note[index].photoId + "&introduce=" + this.data.note[index].instruction + "&avatarURL=" + this.data.note[index].avatarURL + "&nickname=" + this.data.note[index].nickname + "&likeNum=" + this.data.note[index].likeNum + "&like=" + this.data.note[index].like + "&thirdSessionKey=" + this.data.thirdSessionKey,
           })
         },
         fail: (res) => {
@@ -63,24 +63,24 @@ Page({
    */
   onLoad: function(options) {
     let that = this
-    wx.getStorage({
-      key: 'rawData',
-      success: function(res) {
-        console.log(res.data)
-      },
-      // fail:function(res){
-      //   wx.navigateTo({
-      //     url: '../login_page/login',
-      //   })
-      // }
-    })
+    // wx.getStorage({
+    //   key: 'rawData',
+    //   success: function(res) {
+    //     console.log(res.data)
+    //   },
+    //   fail:function(res){
+    //     wx.navigateTo({
+    //       url: '../login_page/login',
+    //     })
+    //   }
+    // })
     wx.getStorage({
       key: 'thirdSessionKey',
       success: function(res) {
         var temp = res.data;
-        console.log(temp)
+        // console.log(temp)
         wx.request({
-         // url: 'http://localhost:8080/uuidLogin',
+          // url: 'http://localhost:8080/uuidLogin',
           url: 'https://www.xqdiary.top/sp/uuidLogin',
           data: {
             thirdSessionKey: temp
@@ -151,7 +151,7 @@ Page({
     if (that.data.thirdSessionKey == '') {
       wx.getStorage({
         key: 'thirdSessionKey',
-        success: function (res) {
+        success: function(res) {
           that.setData({
             thirdSessionKey: res.data
           })
@@ -164,7 +164,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
- 
+
   },
 
   /**
@@ -177,7 +177,7 @@ Page({
   reloadData: function() {
     let that = this
     this.setData({
-      note: '',
+      note: [],
       selectRow: 0
     })
     wx.request({
@@ -197,11 +197,20 @@ Page({
           note: notes,
           selectRow: that.data.selectRow + 15
         })
+        wx.showToast({
+          title: '刷新成功',
+          icon: "none",
+          duration: 1200
+        })
         // console.log(that.data.selectRow)
       },
 
       fail: (res) => {
-        console.log("请求失败!")
+        wx.showToast({
+          title: '请求失败，请稍后再试',
+          icon: "none",
+          duration: 1500
+        })
       }
     })
   },
@@ -212,7 +221,7 @@ Page({
   onPullDownRefresh: function() {
     console.log('onPullDownRefresh', '下拉刷新....');
     this.reloadData()
-    wx.stopPullDownRefresh();
+    wx.stopPullDownRefresh()
   },
 
   /**
@@ -235,12 +244,13 @@ Page({
       },
       success: (res) => {
         if (res.data != '') {
+          console.log(res.data)
           let notes = res.data
           for (let i = 0; i < notes.length; i++) {
             notes[i].like = false
           }
           var newNote = that.data.note.concat(notes)
-          console.log(newNote.length)
+          // console.log(newNote.length)
           that.setData({
             note: newNote,
             selectRow: that.data.selectRow + 15
@@ -251,13 +261,12 @@ Page({
           wx.showToast({
             icon: 'none',
             title: '到底了',
+            duration: 2000
           })
         }
-
-
       },
       fail: (res) => {
-
+        wx.hideLoading()
       }
     })
   },

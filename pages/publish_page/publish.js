@@ -18,7 +18,7 @@ Page({
       key: 'thirdSessionKey',
       success: function (res) {
         wx.request({
-          url: 'http://localhost:8080/manageSend',
+          url: 'https://www.xqdiary.top/sp/manageSend',
           data: {
             thirdSessionKey: res.data
           },
@@ -151,7 +151,7 @@ Page({
             key: 'thirdSessionKey',
             success: function(res) {
               wx.request({
-                url: 'http://localhost:8080/delSend',
+                url: 'https://www.xqdiary.top/sp/delSend',
                 data: {
                   photoId: e.currentTarget.dataset.photoid,
                   thirdSessionKey:res.data
@@ -203,8 +203,8 @@ Page({
     console.log(this.data.items)
     console.log(this.data.items[index].instruction)
     wx.request({
-      //url: 'https://www.xqdiary.top/sp/GetPhotoDetail',
-      url: 'http://localhost:8080/GetPhotoDetail',
+      url: 'https://www.xqdiary.top/sp/GetPhotoDetail',
+     // url: 'http://localhost:8080/GetPhotoDetail',
       data: {
         photoId: e.currentTarget.dataset.photoid
       },

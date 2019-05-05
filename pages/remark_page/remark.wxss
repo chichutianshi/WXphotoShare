@@ -204,12 +204,6 @@ page {
   height: 50rpx;
 }
 
-.comments_num{
-  margin-left: 3%;
-  font-size: 35rpx;
-  color: rgb(102, 102, 102);
-}
-
 .remark_1_area{
   width: 80%;
   margin-left: 18%;

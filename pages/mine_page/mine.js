@@ -119,7 +119,7 @@ Page({
       key: 'thirdSessionKey',
       success: function(res) {
         wx.request({
-          url: 'http://localhost:8080/outLogin',
+          url: 'https://www.xqdiary.top/sp/outLogin',
           data:{
             thirdSessionKey:res.data
           },
