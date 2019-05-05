@@ -1,0 +1,42 @@
+<view class="all">
+
+  <view class="share_top">
+    <view class='ui_uploader_cell'>
+      <!-- 根据已选择的图片临时路径数组展示图片-->
+      <view class='ui_uploader_item' wx:for="{{uploaderList}}" wx:key="{{index}}">
+        <!-- 删除-->
+        <icon class='ui_uploader_item_icon' bindtap='clearImg' data-index="{{index}}" type="clear" size="20" color="red" />
+        <!-- 图片-->
+        <image bindtap='showImg' data-index="{{index}}" src='{{item}}'></image>
+      </view>
+      <!-- 上传按钮+框 -->
+      <image class='ui_uploader1'  bindtap='upload' wx:if="{{showUpload}}" src='../../resources/camera.png'></image>
+      <!-- <view class='ui_uploader' bindtap='upload' wx:if="{{showUpload}}"></view> -->
+    </view>
+  </view>
+
+  <view class="take_color">
+    <view class="conts">
+      <textarea class="areas" id="description" placeholder="{{topic}}" value='{{introduce}}' maxlength="{{max}}" bindinput="inputs">
+        <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text>
+      </textarea>
+    </view>
+
+    <view class="location">
+      <image class="btn_location" bindtap='getlocation' src='../../resources/location.png'></image>
+      <textarea class="show_location"  disabled='true' auto-height='false' placeholder='{{location}}'>
+      </textarea>
+    </view>
+
+    <view class="btns">
+      <button class="btn_publish" bindtap='uploadpic'>
+        发布
+      </button>
+      <button class="btn_cancel" bindtap='clear'>
+        重置
+      </button>
+    </view>
+
+  </view>
+
+</view>

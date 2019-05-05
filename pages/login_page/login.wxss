@@ -1,0 +1,20 @@
+.logo {
+  width: 160rpx;
+  height: 160rpx;
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 30px 295rpx 25rpx 295rpx;
+}
+.confirm{
+  width: 80%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 166, 0, 0.979);
+  margin: 30px 10% 30px 10%;
+}
+.container{
+  margin-top:30%;
+}

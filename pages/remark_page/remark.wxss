@@ -1,0 +1,273 @@
+page {
+  background-color: white;
+  height: 100%;
+}
+
+.whole{
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.picture {
+  /* border: 1rpx solid rgb(138, 68, 68); */
+  background-color: white;
+  width: 100%;
+  height: 40%;
+}
+
+.swipe_container {
+  width: 100%;
+  height: 100%;
+}
+
+.wx-swiper-dots {
+  position: relative;
+  left: unset !important;
+  right: 0;
+}
+
+.wx-swiper-dots.wx-swiper-dots-horizontal {
+  margin-bottom: -5rpx;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+}
+
+.show_message {
+  background-color: white;
+  padding-top: 3%;
+  /* border: 1rpx solid rgb(223, 21, 21); */
+}
+
+.outline {
+  /* border: 1rpx solid yellow; */
+  width: 90%;
+  margin-left: 5%;
+  padding-bottom: 2%;
+  display: flex;
+  align-items: center;
+}
+
+.describe {
+  color: rgb(102, 102, 102);
+  font-size: 35rpx;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  width: 96%;
+  margin: 0 2%;
+  /* border: 1rpx solid rgb(69, 84, 224); */
+}
+
+.photo {
+  width: 80rpx;
+  height: 80rpx;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  margin-left: 4%;
+  /* border: 1rpx solid rgb(197, 180, 104); */
+  border-radius: 50rpx;
+}
+
+.nickname {
+  margin-left: 4%;
+}
+
+.heart_ {
+  /* border: 1rpx solid green; */
+  flex: 3;
+  display: flex;
+  align-items: center;
+  margin-left: 46%;
+}
+
+.heart {
+  width: 40rpx;
+  height: 38rpx;
+  margin-right: 5%;
+}
+
+.num_heart {
+  font-size: 35rpx;
+  color: rgb(102, 102, 102);
+}
+
+.useColor{
+  background-color: white;
+  /* border: 1rpx solid red; */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 8%;
+  padding-top: 1%;
+}
+
+.conts {
+  width: 96%;
+  height: 96%;
+  margin: 0 2%;
+  display: flex;
+  align-items: center;
+  background-color: rgba(233, 233, 233, 0.863); 
+  /* border: 1rpx solid red; */
+  border-radius: 25rpx;
+}
+
+.areas {
+  height: 55%;
+  width: 94%;
+  font-size: 35rpx;
+  text-indent:1em;
+  /* border: 1rpx solid red; */
+  padding-top: 2%;
+  margin: 0 3%;
+  /* padding-left: 2%; */
+  /* padding-right: 2%; */
+  /* overflow: hidden; */
+  position: relative;
+  background-color: rgba(233, 233, 233, 0.863);
+  border-radius: 15rpx;
+}
+
+.convey{
+  width: 9%;
+  height: 60%;
+  margin-right: 4%;
+  /* border: 1rpx solid green; */
+}
+
+.remark_whole {
+  /* border: 1rpx solid green; */
+  background-color: white;
+  margin-top: 2%;
+  width: 100%;
+  height: auto;
+}
+
+.remark_word{
+  margin-left: 4%;
+  font-weight: bold;
+}
+
+/* .remark_1 {
+  border: 1rpx solid red; 
+} */
+
+.remark_1_author {
+  display: flex;
+  align-items: center;
+  /* border: 1rpx solid red; */
+}
+
+.remark_1_photo {
+  width: 80rpx;
+  height: 80rpx;
+  margin-top: 2%;
+  /* margin-bottom: 2%; */
+  margin-left: 4%;
+  border-radius: 50rpx;
+}
+
+.nameTime{
+  /* border: 1rpx solid blue; */
+  margin-left: 3%;
+  margin-top: 3%;
+  margin-bottom: 2%;
+}
+
+.remark_1_nickname {
+  margin-left: 4%;
+  font-size: 38rpx;
+}
+
+.publish_time {
+  font-size: 25rpx;
+  color: rgb(102, 102, 102);
+}
+
+.remark_iconArea{
+  display: flex;
+  align-items: center;
+  /* border: 1rpx solid orange; */
+  margin-left: 45%;
+  margin-top: -5%;
+}
+
+.remark_icon{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.comments_num{
+  margin-left: 3%;
+  font-size: 35rpx;
+  color: rgb(102, 102, 102);
+}
+
+.remark_1_area{
+  width: 80%;
+  margin-left: 18%;
+  margin-right: 2%;
+  padding-bottom: 2%;
+  display: flex;
+  align-items: center;
+  /* border: 1rpx solid red; */
+  border-bottom: 1px solid #ccc;
+}
+
+.remark_1_content{
+  font-size: 32rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.remark_son{
+  /* border: 1rpx solid red; */
+  margin-left: 13%;
+}
+
+.remark_son_author {
+  display: flex;
+  align-items: center;
+  /* border: 1rpx solid red; */
+}
+
+.remark_son_photo {
+  width: 60rpx;
+  height: 60rpx;
+  margin-top: 2%;
+  /* margin-bottom: 2%; */
+  margin-left: 4%;
+  border-radius: 30rpx;
+}
+
+.remark_son_nickname {
+  margin-left: 4%;
+  /* color: rgba(71, 71, 238, 0.801); */
+  font-size: 35rpx;
+}
+
+.remark_son_area{
+  width: 80%;
+  margin-left: 18%;
+  margin-right: 2%;
+  display: flex;
+  align-items: center;
+  /* border: 1rpx solid red; */
+}
+
+.remark_son_content{
+  font-size: 26rpx;
+}
+
+.show_more_remark{
+  color: rgb(102, 102, 102);
+  font-size: 30rpx;
+  margin-left: 17%;
+}

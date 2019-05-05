@@ -1,0 +1,163 @@
+page {
+  background-color: rgb(223, 222, 222);
+  width: 100%;
+  height: 100%;
+}
+
+/* .author_message {
+  width: 100%;
+  height: 15%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  border: 1rpx solid red; 
+} */
+
+/* .author_head {
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  margin-left: 4%;
+  border: 1rpx solid rgb(197, 180, 104); 
+  border-radius: 50rpx;
+} */
+
+/* .author_name {
+  margin-left: 4%;
+  font-size: 45rpx;
+} */
+
+.all_publish {
+  width: 100%;
+  height: auto;
+  background-color: white;
+  /* border: 1rpx solid red; */
+}
+
+.container {
+  min-height: 100%;
+  padding: 20rpx 0rpx;
+}
+
+.touch-item {
+  /* border: 1rpx solid red; */
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.content {
+  /* border: 1rpx solid red; */
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  line-height: 22px;
+  margin-right: 0;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  -webkit-transform: translateX(90px);
+  transform: translateX(90px);
+  margin-left: -90px;
+}
+
+.swipe_container {
+  /* border: 1rpx solid blue; */
+  width: 100%;
+  margin-left: -1%;
+  margin-top: -2%;
+}
+
+.show_message {
+  background-color: white;
+  padding-top: 3%;
+  /* border: 1rpx solid rgb(223, 21, 21); */
+}
+
+.outline {
+  /* border: 1rpx solid yellow; */
+  width: 90%;
+  margin-left: 5%;
+  padding-bottom: 2%;
+  display: flex;
+  align-items: center;
+}
+
+.describe {
+  color: rgb(102, 102, 102);
+  font-size: 35rpx;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  /* border: 1rpx solid rgb(69, 84, 224); */
+}
+
+.photo {
+  width: 85rpx;
+  height: 85rpx;
+  margin-top: 2%;
+  margin-left: 2%;
+  /* border: 1rpx solid rgb(197, 180, 104); */
+  border-radius: 50rpx;
+}
+
+.name_time {
+  /* border: 1rpx solid black; */
+  width: 60%;
+  padding-left: 4%;
+  padding-top: 2%;
+}
+
+.nickname {
+  margin-left: 4%;
+  padding-top: 10%;
+}
+
+.publish_time {
+  font-size: 25rpx;
+  color: rgb(102, 102, 102);
+}
+
+.heart_ {
+  /* border: 1rpx solid green; */
+  flex: 3;
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+}
+
+.heart {
+  width: 40rpx;
+  height: 38rpx;
+  margin-right: 5%;
+}
+
+.num_heart {
+  font-size: 35rpx;
+  color: rgb(102, 102, 102);
+}
+
+.del {
+  background-color: orangered;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  -webkit-transform: translateX(90px);
+  transform: translateX(90px);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.touch-move-active .content, .touch-move-active .del {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}

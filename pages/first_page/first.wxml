@@ -1,0 +1,59 @@
+<view class="whole">
+  <view class="top_search">
+    <view class="search">
+      <view class="df searchBar">
+        <icon class="icon_search" size='20' type='search'></icon>
+        <input class="input_search" placeholder="请输入关键字" value="{{searchValue}}" />
+      </view>
+      <view class='btn_search'>搜索</view>
+    </view>
+  </view>
+
+  <view class="content">
+
+    <view class="left">
+      <block wx:for="{{note}}" wx:key="">
+        <view class="item " wx:if="{{index%2==0}}">
+
+          <image class="item-img" data-vid='{{index}}' src="{{item.photoURL}}" mode="widthFix" bindtap='loaddetail'></image>
+
+          <view class="item-title-box" data-vid='{{index}}' bindtap='loaddetail'>
+
+            <a class="item-title" data-vid='{{index}}'>{{item.instruction}}</a>
+          </view>
+
+          <view class="name">
+            <image class="item-ava" src="{{item.avatarURL}}"></image>
+            <text class="name-title">{{item.nickname}}</text>
+
+            <view class="heart_" bindtap='increaseOrDeLike' data-vid='{{index}}'>
+              <image class="heart" wx:if="{{item.like==false}}" src="../../resources/heart_grey.png" data-vid='{{index}}'></image>
+              <image class="heart" wx:if="{{item.like==true}}" src="../../resources/heart.png" data-vid='{{index}}'></image>
+              <text data-vid='{{index}}'>{{item.likeNum}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="right">
+      <block wx:for="{{note}}" wx:key="">
+        <view class="item" wx:if="{{index%2==1}}">
+          <image class="item-img" data-vid='{{index}}' src="{{item.photoURL}}" mode="widthFix" bindtap='loaddetail'></image>
+          <view class="item-title-box" bindtap='loaddetail'>
+            <a class="item-title" data-vid='{{index}}'>{{item.instruction}}</a>
+          </view>
+          <view class="name">
+            <image class="item-ava" src="{{item.avatarURL}}"></image>
+            <text class="name-title">{{item.nickname}}</text>
+            <view class="heart_"bindtap='increaseOrDeLike' data-vid='{{index}}'>
+                      <image class="heart" wx:if="{{item.like==false}}" src="../../resources/heart_grey.png" data-vid='{{index}}'></image>
+              <image class="heart" wx:if="{{item.like==true}}" src="../../resources/heart.png" data-vid='{{index}}'></image>
+              <text data-vid='{{index}}'>{{item.likeNum}}</text>
+            </view>
+          </view>
+
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

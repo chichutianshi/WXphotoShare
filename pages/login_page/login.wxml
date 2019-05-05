@@ -1,0 +1,15 @@
+<view class="container">
+
+  <view style='margin:10rpx auto;text-align:center'>
+    <image src="../../resources/mine_green.jpg" class="logo"></image>
+  </view>
+
+  <view style='text-align:center'>
+    分享瞬间
+  </view>
+
+  <button class="confirm" open-type='getUserInfo' bindgetuserinfo='bindGetUserInfo'>
+    确认授权登录      
+  </button>
+  
+</view>

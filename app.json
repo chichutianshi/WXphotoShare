@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/first_page/first",
+    "pages/share_page/share",
+    "pages/mine_page/mine",
+    "pages/login_page/login",
+    "pages/remark_page/remark",
+    "pages/publish_page/publish",
+    "pages/sonRemark_page/sonRemark"
+  ],
+  "tabBar": {
+    "color": "#dddddd",
+    "selectedColor": "#FFA500",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/first_page/first",
+        "iconPath": "./resources/browser_grey.png",
+        "selectedIconPath": "./resources/browser_orange.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/share_page/share",
+        "iconPath": "./resources/share_grey.png",
+        "selectedIconPath": "./resources/share_orange.png",
+        "text": "分享"
+      },
+      {
+        "pagePath": "pages/mine_page/mine",
+        "iconPath": "./resources/individual_grey.png",
+        "selectedIconPath": "./resources/individual_orange.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#FFA500",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light"
+  },
+  "sitemapLocation": "sitemap.json"
+}

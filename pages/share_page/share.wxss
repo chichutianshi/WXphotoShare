@@ -1,0 +1,191 @@
+page {
+  /* background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 166, 0, 0.979)), 
+  to(rgb(255, 188, 63))); */
+  width: 100%;
+  height: 100%;
+}
+
+.all{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.share_top {
+  width: 100%;
+  /*height-3 levels :22% 42% 61%*/
+  height: 22%;
+  padding-top: 2%;
+  padding-bottom: 1%;
+  /* border: solid 1rpx red; */
+  /* background-color: rgb(224, 224, 224); */
+}
+
+/* ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+} */
+
+.ui_uploader_cell {
+  width: 90%;
+  /* height: 98%; */
+  height: 600rpx;
+  padding-top: 2%;
+  padding-left: 2%;
+  /* margin-bottom: 1%; */
+  margin-left: 5%;
+  margin-right: 5%;
+  box-sizing: border-box;
+  /* border: 1rpx solid orange; */
+  /* background-color: rgb(230, 230, 230); */
+}
+
+.ui_uploader_item {
+  float: left;
+  position: relative;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 20rpx;
+  width: 190rpx;
+  height: 190rpx;
+}
+
+.ui_uploader1 {
+  float: left;
+  position: relative;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 25rpx;
+  width: 190rpx;
+  height: 190rpx;
+  border: 2rpx solid black;
+  box-sizing: border-box;
+}
+
+.ui_uploader:before {
+  content: " ";
+  position: absolute;
+  width: 4rpx;
+  height: 79rpx;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: black;
+}
+
+.ui_uploader:after {
+  content: " ";
+  position: absolute;
+  height: 4rpx;
+  width: 79rpx;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: black;
+}
+
+.ui_uploader_item_icon {
+  position: absolute;
+  right: -10rpx;
+  top: -10rpx;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.ui_uploader_item image {
+  width: 100%;
+  height: 100%;
+}
+
+.take_color{
+  /* border: 1rpx solid green; */
+  width: 100%;
+  height: 80%;
+  /* background-color: white; */
+}
+
+.conts {
+  width: 95%;
+  height: auto;
+  margin-left: 2%;
+  margin-right: 3%;
+  border-radius: 15rpx;
+  /* background-color: rgb(230, 230, 230); */
+  /* border: 1rpx solid rgb(255, 100, 100); */
+}
+
+.areas {
+  width: 100%;
+  height: 152rpx;
+  font-size: 30rpx;
+  text-indent: 28rpx;
+  border: 1rpx solid gainsboro;
+  padding-top: 30rpx;
+  /* margin-left: 4%;
+  margin-right: 5%; */
+  overflow: hidden;
+  position: relative;
+  background-color: rgba(231, 230, 230, 0.863);
+  border-radius: 15rpx;
+}
+
+.currentWordNumber {
+  font-size: 28rpx;
+  color: gray;
+  position: absolute;
+  right: 3%;
+  top: -6rpx;
+}
+
+.location {
+  width: 100%;
+  height: 100rpx;
+  margin-top: 10rpx;
+  /* border: 1rpx solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn_location {
+  float: left;
+  padding-right: 15rpx;
+  margin-top: 15rpx;
+  margin-bottom: 15rpx;
+  width: 9%;
+  height: 70rpx;
+}
+
+.show_location {
+  /* border: 1rpx solid black; */
+  width: 77%;
+  height: 70rpx;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.btn_publish {
+  width: 30%;
+  height: 80rpx;
+  background-color: rgb(255, 189, 7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn_cancel {
+  width: 30%;
+  height: 80rpx;
+  background-color: rgb(255, 189, 7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
