@@ -158,11 +158,17 @@ Page({
                 },
                 success: function (res2) {
                   if (res2.data == 1) {
+                    that.data.items.splice(e.currentTarget.dataset.index, 1)
+                    that.setData({
+                      items: that.data.items
+                    })
+
                     wx.showToast({
                       title: '删除成功',
                       icon: 'success',
                       duration: 1000
                     })
+
                   } else if (res2.data == -1) {
                     wx.showToast({
                       title: '删除失败',
@@ -175,11 +181,7 @@ Page({
             },
           })
           
-
-          that.data.items.splice(e.currentTarget.dataset.index, 1)
-          that.setData({
-            items: that.data.items
-          })
+          
         } else if (res.cancel) {
           // console.log('用户点击取消')
         }

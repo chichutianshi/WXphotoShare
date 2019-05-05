@@ -46,7 +46,7 @@
 </view>
 <view class="useColor">
   <view class="conts">
-    <textarea class="areas" id="description" placeholder="{{topic}}" value='{{introduce}}' maxlength="{{max}}" bindinput="inputs" fixed='true' cursor-spacing="24rpx" bindinput="inputs">
+    <textarea class="areas" id="description" placeholder="{{topic}}" value='{{pubSonComment}}' maxlength="{{max}}" bindinput="inputs" fixed='true' cursor-spacing="24rpx" bindinput="inputs">
     </textarea>
     <image class="convey" src="../../resources/sent.png" bindtap='publishSonComment'></image>
   </view>

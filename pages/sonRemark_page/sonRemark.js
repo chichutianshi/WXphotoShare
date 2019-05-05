@@ -34,6 +34,7 @@ Page({
         commentIndex: that.data.commentIndex
       },
       success: (res) => {
+        // console.log(res.data)
         that.setData({
           sonComments:res.data,
           commentIndex: that.data.commentIndex + 10
@@ -198,21 +199,18 @@ Page({
       url: 'https://www.xqdiary.top/sp/commentsReply',
       data: {
         thirdSessionKey: that.data.thirdSessionKey,
-        content: that.data.pubComment,
+        content: that.data.pubSonComment,
         photoId: that.data.photoId,
         fromURL: rawData.avatarUrl,
-        fromname: rawData.nickName
+        fromname: rawData.nickName,
+        commentId: that.data.mainComment.id
       },
       success: (res) => {
         console.log(res.data)
         if (res.data == 1) {
+          this.reloadCommnets()
           that.setData({
-            sonComments: that.data.sonComments.push({
-              fromname: rawData.nickName,
-              fromURL: rawData.avatarUrl,
-              content: that.data.pubComment,
-              createTime: "1分钟内"
-            })
+        pubSonComment:""
           })
         } else {
           if (res.data = -1) {

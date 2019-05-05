@@ -60,6 +60,7 @@ Page({
         commentIndex: this.data.commentIndex
       },
       success: (res) => {
+        console.log(res.data)
         that.setData({
           mainComments: res.data,
           commentIndex: that.data.commentIndex + 10
@@ -166,6 +167,7 @@ Page({
         commentIndex: that.data.commentIndex
       },
       success: (res) => {
+        // console.log(res.data)
         if (res.data != '') {
           console.log(res.data)
           let comments=res.data
@@ -251,13 +253,9 @@ Page({
       success: (res) => {
         console.log(res.data)
         if (res.data == 1) {
+          this.reloadCommnets()
           that.setData({
-            mainComments: that.data.mainComments.push({
-              fromname: rawData.nickName,
-              fromURL: rawData.avatarUrl,
-              content: that.data.pubComment,
-              createTime:"1分钟内"
-            })
+            pubComment:''
           })
         } else {
           if (res.data = -1) {

@@ -142,8 +142,8 @@ Page({
           let i = e.i ? e.i : 0
           let uploaderNum = that.data.uploaderNum
           wx.uploadFile({
-            url: 'http://localhost:8080/fileCtrl/upPicture',
-            //url: 'https://www.xqdiary.top/sp/fileCtrl/upPicture',
+            //url: 'http://localhost:8080/fileCtrl/upPicture',
+            url: 'https://www.xqdiary.top/sp/fileCtrl/upPicture',
             filePath: that.data.uploaderList[i],
             name: 'pic',
             header: {
