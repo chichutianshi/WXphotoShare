@@ -11,11 +11,6 @@ page {
   height: auto;
 }
 
-/* .remark_word{
-  margin-left: 4%;
-  font-weight: bold;
-} */
-
 /* .remark_1 {
   border: 1rpx solid rgb(197, 180, 104); 
 } */
@@ -39,7 +34,6 @@ page {
   width: 100rpx;
   height: 100rpx;
   margin-top: 2%;
-  /* margin-bottom: 2%; */
   margin-left: 2%;
   border-radius: 50rpx;
 }
@@ -63,7 +57,6 @@ page {
 
 .remark_1_nickname {
   margin-left: 4%;
-  /* color: rgba(71, 71, 238, 0.801); */
 }
 
 .remark_1_area{
@@ -75,10 +68,9 @@ page {
   /* border: 1rpx solid red; */
 }
 
-.remark_1_content{
-  font-size: 32rpx;
-  text-overflow: ellipsis;
-  overflow: hidden;
+.remark_1_area text{
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .remark_son{
@@ -99,30 +91,28 @@ page {
   width: 60rpx;
   height: 60rpx;
   margin-top: 2%;
-  /* margin-bottom: 2%; */
   margin-left: 4%;
   border-radius: 30rpx;
 }
 
 .remark_son_nickname {
   margin-left: 4%;
-  /* color: rgba(71, 71, 238, 0.801); */
   font-size: 35rpx;
 }
 
 .remark_son_area{
   width: 80%;
-  margin-left: 18%;
+  margin-left: 16%;
   margin-right: 2%;
   padding-bottom: 4%;
   display: flex;
   align-items: center;
-  /* border-bottom: 1px solid #ccc; */
   /* border: 1rpx solid red; */
 }
 
-.remark_son_content{
-  font-size: 26rpx;
+.remark_son_area text{
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .show_more_remark{
