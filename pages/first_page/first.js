@@ -80,7 +80,7 @@ Page({
         var temp = res.data;
         // console.log(temp)
         wx.request({
-          // url: 'http://localhost:8080/uuidLogin',
+          // url: 'https://www.xqdiary.top/sp/uuidLogin',
           url: 'https://www.xqdiary.top/sp/uuidLogin',
           data: {
             thirdSessionKey: temp
@@ -121,7 +121,7 @@ Page({
         if (that.data.note.length == 0) {
           //console.log("come in")
           wx.request({
-            //url: 'http://localhost:8080/loadPhotos',
+            //url: 'https://www.xqdiary.top/sp/loadPhotos',
             url: 'https://www.xqdiary.top/sp/loadPhotos',
             data: {
               selectRow: that.data.selectRow,
@@ -194,7 +194,7 @@ Page({
       selectRow: 0
     })
     wx.request({
-      //url: 'http://localhost:8080/loadPhotos',
+      //url: 'https://www.xqdiary.top/sp/loadPhotos',
       url: 'https://www.xqdiary.top/sp/loadPhotos',
       data: {
         selectRow: that.data.selectRow,
@@ -249,7 +249,7 @@ Page({
   loadMore: function() {
     let that = this
     wx.request({
-      //url: 'http://localhost:8080/loadPhotos',
+      //url: 'https://www.xqdiary.top/sp/loadPhotos',
       url: 'https://www.xqdiary.top/sp/loadPhotos',
       data: {
         selectRow: that.data.selectRow,

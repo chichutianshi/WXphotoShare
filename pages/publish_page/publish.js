@@ -9,8 +9,70 @@ Page({
     autoplay: false,
     interval: 3000,
     duration: 1000,
-    circular: true
+    circular: true,
+    selectRow: 0,
   },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    console.log('onPullDownRefresh', '下拉刷新....');
+    this.reloadData()
+    wx.stopPullDownRefresh()
+  },
+
+  reloadData:function(){
+    let that = this
+    this.setData({
+      items: [],
+      selectRow: 0
+    })
+    wx.getStorage({
+      key: 'thirdSessionKey',
+      success: function(res) {
+        wx.request({
+          //url: 'https://www.xqdiary.top/sp/manageSend',
+          url: 'https://www.xqdiary.top/sp/manageSend',
+          data: {
+            selectRow: that.data.selectRow,
+            thirdSessionKey: res.data
+          },
+          success: function (res) {
+            let notes = res.data
+            //console.log(notes)
+            let photoURLs = notes[0].photoURL
+            //console.log(photoURLs)
+            for (var ck = 0; ck < notes.length; ck++) {
+              let photoURLs = notes[ck].photoURL;
+              that.data.items.push({
+                imgUrls: photoURLs,
+                instruction: notes[ck].instruction,
+                avatarURL: notes[ck].avatarURL,
+                nickname: notes[ck].nickname,
+                likeNum: notes[ck].likeNum,
+                photoid: notes[ck].photoId,
+                content: ck + " 向左滑动删除哦",
+                isTouchMove: false //默认隐藏删除
+              })
+
+              that.data.imgUrls.push({
+                imgUrls2: photoURLs,
+              })
+            }
+            that.setData({
+              selectRow: that.data.selectRow + 6,
+              items: that.data.items,
+              imgUrls: that.data.imgUrls
+            });
+            console.log(that.data.imgUrls)
+          },
+        })
+      },
+    })
+  },
+
+
 
   onLoad: function (options) {
     var that = this;
@@ -20,6 +82,7 @@ Page({
         wx.request({
           url: 'https://www.xqdiary.top/sp/manageSend',
           data: {
+            selectRow:that.data.selectRow,
             thirdSessionKey: res.data
           },
           success: function (res) {
@@ -45,6 +108,7 @@ Page({
               })
             }
             that.setData({
+              selectRow:that.data.selectRow+6,
               items: that.data.items,
               imgUrls:that.data.imgUrls
             });
@@ -206,7 +270,7 @@ Page({
     console.log(this.data.items[index].instruction)
     wx.request({
       url: 'https://www.xqdiary.top/sp/GetPhotoDetail',
-     // url: 'http://localhost:8080/GetPhotoDetail',
+     // url: 'https://www.xqdiary.top/sp/GetPhotoDetail',
       data: {
         photoId: e.currentTarget.dataset.photoid
       },
@@ -221,4 +285,72 @@ Page({
     })
 
   },
+
+  /**
+  * 页面上拉触底事件的处理函数
+  */
+  onReachBottom: function () {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    this.loadMore()
+  },
+  loadMore:function(){
+    var that = this
+    wx.getStorage({
+      key: 'thirdSessionKey',
+      success: function (res) {
+        wx.request({
+          //url: 'https://www.xqdiary.top/sp/manageSend',
+          url: 'https://www.xqdiary.top/sp/manageSend',
+          data: {
+            selectRow: that.data.selectRow,
+            thirdSessionKey: res.data
+          },
+          success: function (res) {
+            if (res.data != '') {
+              let notes = res.data
+              //console.log(temp)
+              //var notes = that.data.items.concat(temp)
+              //console.log(notes)
+              //let photoURLs = notes[0].photoURL
+              //console.log(photoURLs)
+              for (var ck = 0; ck < notes.length; ck++) {
+                let photoURLs = notes[ck].photoURL;
+                that.data.items.push({
+                  imgUrls: photoURLs,
+                  instruction: notes[ck].instruction,
+                  avatarURL: notes[ck].avatarURL,
+                  nickname: notes[ck].nickname,
+                  likeNum: notes[ck].likeNum,
+                  photoid: notes[ck].photoId,
+                  content: ck + " 向左滑动删除哦",
+                  isTouchMove: false //默认隐藏删除
+                })
+
+                that.data.imgUrls.push({
+                  imgUrls2: photoURLs,
+                })
+              }
+              that.setData({
+                selectRow: that.data.selectRow + 6,
+                items: that.data.items,
+                imgUrls: that.data.imgUrls
+              });
+              wx.hideLoading()
+              console.log(that.data.imgUrls)
+            } else {
+              wx.hideLoading()
+              wx.showToast({
+                icon: 'none',
+                title: '到底了',
+                duration: 2000
+              })
+            }
+            
+          },
+        })
+      },
+    })
+  }
 })
