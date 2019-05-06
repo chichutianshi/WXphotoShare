@@ -84,9 +84,9 @@ page {
 .remark_son{
   /* border: 1rpx solid red; */
   margin-top: 2%;
-  margin-left: 13%;
+  margin-left: 8%;
   margin-right: 3%;
-  /* padding-bottom: 2%; */
+  border-bottom: 1px solid #ccc;
 }
 
 .remark_son_author {
@@ -117,7 +117,7 @@ page {
   padding-bottom: 4%;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
   /* border: 1rpx solid red; */
 }
 

@@ -3,7 +3,7 @@ page {
   height: 100%;
 }
 
-.whole{
+.whole {
   background-color: white;
   width: 100%;
   height: 100%;
@@ -38,13 +38,16 @@ page {
 
 .show_message {
   background-color: white;
-  padding-top: 3%;
+  /* padding-top: 3%; */
+  width: 100%;
+  height: 20%;
   /* border: 1rpx solid rgb(223, 21, 21); */
 }
 
 .outline {
   /* border: 1rpx solid yellow; */
   width: 90%;
+  height: 20%;
   margin-left: 5%;
   padding-bottom: 2%;
   display: flex;
@@ -52,8 +55,20 @@ page {
 }
 
 .describe {
+  /* border: 1px solid red; */
   color: rgb(102, 102, 102);
   font-size: 35rpx;
+  height: 30rpx;
+  position: absolute;
+  text-overflow: ellipsis;
+  /* word-wrap: break-word; */
+}
+
+.location_ {
+  /* border: 1px solid red; */
+  width: 94%;
+  height: auto;
+  margin: 0 3%;
 }
 
 .author {
@@ -77,20 +92,28 @@ page {
 
 .nickname {
   margin-left: 4%;
+  /* border: 1px solid blue; */
+  width: 80%;
+}
+
+.photoName {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  width: 80%;
 }
 
 .heart_ {
   /* border: 1rpx solid green; */
-  flex: 3;
   display: flex;
   align-items: center;
-  margin-left: 46%;
+  width: 20%;
 }
 
 .heart {
   width: 40rpx;
   height: 38rpx;
-  margin-right: 5%;
+  margin-left: 20%;
 }
 
 .num_heart {
@@ -98,7 +121,7 @@ page {
   color: rgb(102, 102, 102);
 }
 
-.useColor{
+.useColor {
   background-color: white;
   /* border: 1rpx solid red; */
   position: fixed;
@@ -114,7 +137,7 @@ page {
   margin: 0 2%;
   display: flex;
   align-items: center;
-  background-color: rgba(233, 233, 233, 0.863); 
+  background-color: rgba(233, 233, 233, 0.863);
   /* border: 1rpx solid red; */
   border-radius: 25rpx;
 }
@@ -123,19 +146,16 @@ page {
   height: 55%;
   width: 94%;
   font-size: 35rpx;
-  text-indent:1em;
+  text-indent: 1em;
   /* border: 1rpx solid red; */
   padding-top: 2%;
   margin: 0 3%;
-  /* padding-left: 2%; */
-  /* padding-right: 2%; */
-  /* overflow: hidden; */
   position: relative;
   background-color: rgba(233, 233, 233, 0.863);
   border-radius: 15rpx;
 }
 
-.convey{
+.convey {
   width: 9%;
   height: 60%;
   margin-right: 4%;
@@ -150,7 +170,7 @@ page {
   height: auto;
 }
 
-.remark_word{
+.remark_word {
   margin-left: 4%;
   font-weight: bold;
 }
@@ -162,6 +182,7 @@ page {
 .remark_1_author {
   display: flex;
   align-items: center;
+  width: 100%;
   /* border: 1rpx solid red; */
 }
 
@@ -174,8 +195,9 @@ page {
   border-radius: 50rpx;
 }
 
-.nameTime{
+.nameTime {
   /* border: 1rpx solid blue; */
+  width: 60%;
   margin-left: 3%;
   margin-top: 3%;
   margin-bottom: 2%;
@@ -191,20 +213,21 @@ page {
   color: rgb(102, 102, 102);
 }
 
-.remark_iconArea{
+.remark_iconArea {
   display: flex;
   align-items: center;
   /* border: 1rpx solid orange; */
-  margin-left: 45%;
+  width: 15%;
+  margin-left: 10%;
   margin-top: -5%;
 }
 
-.remark_icon{
+.remark_icon {
   width: 50rpx;
   height: 50rpx;
 }
 
-.remark_1_area{
+.remark_1_area {
   width: 80%;
   margin-left: 18%;
   margin-right: 2%;
@@ -215,13 +238,13 @@ page {
   border-bottom: 1px solid #ccc;
 }
 
-.remark_1_content{
+.remark_1_content {
   font-size: 32rpx;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-.remark_son{
+.remark_son {
   /* border: 1rpx solid red; */
   margin-left: 13%;
 }
@@ -247,7 +270,7 @@ page {
   font-size: 35rpx;
 }
 
-.remark_son_area{
+.remark_son_area {
   width: 80%;
   margin-left: 18%;
   margin-right: 2%;
@@ -256,11 +279,11 @@ page {
   /* border: 1rpx solid red; */
 }
 
-.remark_son_content{
+.remark_son_content {
   font-size: 26rpx;
 }
 
-.show_more_remark{
+.show_more_remark {
   color: rgb(102, 102, 102);
   font-size: 30rpx;
   margin-left: 17%;

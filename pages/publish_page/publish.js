@@ -6,7 +6,7 @@ Page({
     startY: 0,
     imgUrls: [],
     indicatorDots: false,
-    autoplay: true,
+    autoplay: false,
     interval: 3000,
     duration: 1000,
     circular: true

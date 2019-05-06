@@ -12,12 +12,16 @@
 
   <view class="show_message">
     <view class="outline">
-      <a class="describe">{{intruction}}</a>
+      <a class="describe">{{instruction}}</a>
+    </view>
+    <view class="location_">
+      <a class="location">asdsd</a>
     </view>
     <view class="author">
-      <image class="photo" src="{{avatarURL}}"></image>
-      <a class="nickname">{{nickname}}</a>
-
+      <view class="photoName">
+        <image class="photo" src="{{avatarURL}}"></image>
+        <a class="nickname">{{nickname}}</a>
+      </view>
       <view class="heart_">
         <image class="heart" wx:if="{{islike}}" src="../../resources/heart.png"></image>
         <image class="heart" wx:else src="../../resources/heart_grey.png"></image>
