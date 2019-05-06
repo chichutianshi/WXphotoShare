@@ -15,9 +15,7 @@
         </view>
       </view>
       <view class="remark_1_area">
-        <a class="remark_1_content">
-          {{mainComment.content}}
-        </a>
+        <text>{{mainComment.content}}</text>
       </view>
     </view>
     <!-- 子评论模板 -->
@@ -32,9 +30,7 @@
           </view>
         </view>
         <view class="remark_son_area">
-          <a class="remark_son_content">
-            {{item.content}}
-          </a>
+          <text>{{item.content}}</text>
         </view>
       </view>
     </block>
