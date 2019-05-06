@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    rawData: {},
+    rawData: '',
     text: '\n',
     mainComments: [],
     imgUrls: [],
@@ -49,7 +49,6 @@ Page({
       likeNum: options.likeNum,
       islike: options.like,
       photoId: options.photoId,
-      thirdSessionKey: options.thirdSessionKey
     })
     // console.log(that.data.thirdSessionKey)
     // console.log(options.like)
@@ -60,7 +59,7 @@ Page({
         commentIndex: this.data.commentIndex
       },
       success: (res) => {
-        console.log(res.data)
+        // console.log(res.data)
         that.setData({
           mainComments: res.data,
           commentIndex: that.data.commentIndex + 10
@@ -93,6 +92,17 @@ Page({
         })
       },
     })
+    if (that.data.thirdSessionKey == '') {
+      wx.getStorage({
+        key: 'thirdSessionKey',
+        success: function(res) {
+          // console.log(res.data)
+          that.setData({
+            thirdSessionKey: res.data
+          })
+        },
+      })
+    }
   },
 
   /**
@@ -160,6 +170,7 @@ Page({
   },
   loadMoreComments: function() {
     let that = this
+    console.log(that.data.commentIndex)
     wx.request({
       url: 'https://www.xqdiary.top/sp/getMainPhotoComment',
       data: {
@@ -169,11 +180,14 @@ Page({
       success: (res) => {
         // console.log(res.data)
         if (res.data != '') {
-          console.log(res.data)
-          let comments=res.data
-          let mainComments = that.data.mainComments
+          // console.log(res.data)
+          let comments = res.data
+          let mainComments = that.data.mainComments.concat(comments)
+          // console.log(that.data.mainComments.concat(comments))
+         
           that.setData({
-            mainComments: mainComments.push(comments)
+            mainComments: mainComments,
+            commentIndex: that.data.commentIndex + 10
           })
           wx.hideLoading()
         } else {
@@ -228,55 +242,75 @@ Page({
 
     if (len > this.data.max) return;
     // 当输入框内容的长度大于最大长度限制（max)时，终止setData()的执行
-    this.setData({ 
+    this.setData({
       pubComment: value
     });
   },
 
   publishMainComment: function() {
     let that = this
-    let rawData = JSON.parse(this.data.rawData)
-    console.log(that.data.thirdSessionKey)
-    console.log(rawData.nickName)
-    console.log(rawData.avatarUrl)
-    console.log(that.data.photoId)
-    console.log(that.data.pubComment)
-    wx.request({
-      url: 'https://www.xqdiary.top/sp/publishMainComment',
-      data: {
-        thirdSessionKey: that.data.thirdSessionKey,
-        content: that.data.pubComment,
-        photoId: that.data.photoId,
-        fromURL: rawData.avatarUrl,
-        fromname: rawData.nickName
-      },
-      success: (res) => {
-        console.log(res.data)
-        if (res.data == 1) {
-          this.reloadCommnets()
-          that.setData({
-            pubComment:''
-          })
-        } else {
-          if (res.data = -1) {
-            wx.showToast({
-              title: '发送失败',
-              icon: "none",
-              duration: 1300
-            })
-          } else {
-            wx.showToast({
-              title: '请登陆进行评论',
-              icon: "none",
-              duration: 1300
-            })
-          }
-        }
-      },
-      fail: (res) => {
+    // console.log(this.data.rawData)
+    if (this.data.rawData == '') {
+      wx.showToast({
+        title: '请登陆进行评论',
+        icon: 'none',
+        duration: 1300
+      })
+    } else {
+      if (that.data.pubComment != '') {
+        let rawData = JSON.parse(this.data.rawData)
+        // console.log(that.data.thirdSessionKey)
+        // console.log(rawData.nickName)
+        // console.log(rawData.avatarUrl)
+        // console.log(that.data.photoId)
+        // console.log(that.data.pubComment)
+        wx.request({
+          url: 'https://www.xqdiary.top/sp/publishMainComment',
+          data: {
+            thirdSessionKey: that.data.thirdSessionKey,
+            content: that.data.pubComment,
+            photoId: that.data.photoId,
+            fromURL: rawData.avatarUrl,
+            fromname: rawData.nickName
+          },
+          success: (res) => {
+            console.log(res.data)
+            if (res.data == 1) {
+              this.reloadCommnets()
+              that.setData({
+                pubComment: ''
+              })
+            } else {
+              if (res.data = -2) {
+                wx.showToast({
+                  title: '请登陆进行评论',
+                  icon: "none",
+                  duration: 1300
+                })
+              } else {
+                wx.showToast({
+                  title: '发送失败',
+                  icon: "none",
+                  duration: 1300
+                })
+              }
+            }
+          },
+          fail: (res) => {
 
+          }
+        })
       }
-    })
+      else{
+        wx.showToast({
+          title: '评论不能为空',
+          icon:"none",
+          duration:1300
+        })
+      }
+
+    }
+
   }
 
 })

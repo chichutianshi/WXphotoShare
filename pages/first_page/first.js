@@ -39,7 +39,7 @@ Page({
 
   loaddetail: function(e) {
     let index = e.target.dataset.vid
-    console.log(index)
+    // console.log(index)
     if (index != undefined) {
       wx.request({
         url: 'https://www.xqdiary.top/sp/GetPhotoDetail',
@@ -49,7 +49,7 @@ Page({
         success: (res) => {
           //console.log(res.data.photoUrls)
           wx.navigateTo({
-            url: '../remark_page/remark?photoUrls=' + JSON.stringify(res.data.photoUrls) + "&photoId=" + this.data.note[index].photoId + "&introduce=" + this.data.note[index].instruction + "&avatarURL=" + this.data.note[index].avatarURL + "&nickname=" + this.data.note[index].nickname + "&likeNum=" + this.data.note[index].likeNum + "&like=" + this.data.note[index].like + "&thirdSessionKey=" + this.data.thirdSessionKey,
+            url: '../remark_page/remark?photoUrls=' + JSON.stringify(res.data.photoUrls) + "&photoId=" + this.data.note[index].photoId + "&introduce=" + this.data.note[index].instruction + "&avatarURL=" + this.data.note[index].avatarURL + "&nickname=" + this.data.note[index].nickname + "&likeNum=" + this.data.note[index].likeNum + "&like=" + this.data.note[index].like,
           })
         },
         fail: (res) => {
@@ -92,6 +92,18 @@ Page({
                 thirdSessionKey: temp
               })
             } else {
+              wx.removeStorage({
+                key: 'thirdSessionKey',
+                success: function (res) {
+                  wx.removeStorage({
+                    key: 'rawData',
+                    success: function (res) { },
+                  })
+                },
+                fail: function () {
+
+                }
+              })
               wx.navigateTo({
                 url: '../login_page/login',
               })
@@ -116,14 +128,14 @@ Page({
               thirdSessionKey: ''
             },
             success: (res) => {
-              console.log(res.data)
+              // console.log(res.data)
               let notes = res.data
               for (let i = 0; i < notes.length; i++) {
                 notes[i].like = false
               }
               that.setData({
                 note: res.data,
-                selectRow: that.data.selectRow + 15
+                selectRow: that.data.selectRow + 14
               })
               // console.log(that.data.selectRow)
             },
@@ -152,6 +164,7 @@ Page({
       wx.getStorage({
         key: 'thirdSessionKey',
         success: function(res) {
+          // console.log(res.data)
           that.setData({
             thirdSessionKey: res.data
           })
@@ -195,7 +208,7 @@ Page({
         // console.log(res.data)
         that.setData({
           note: notes,
-          selectRow: that.data.selectRow + 15
+          selectRow: that.data.selectRow + 14
         })
         wx.showToast({
           title: '刷新成功',
@@ -253,7 +266,7 @@ Page({
           // console.log(newNote.length)
           that.setData({
             note: newNote,
-            selectRow: that.data.selectRow + 15
+            selectRow: that.data.selectRow + 14
           })
           wx.hideLoading()
         } else {

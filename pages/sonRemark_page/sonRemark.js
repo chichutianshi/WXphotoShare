@@ -13,7 +13,6 @@ Page({
     sonComments: [],
     max: 500,
     pubSonComment: '',
-
   },
 
   /**
@@ -24,7 +23,6 @@ Page({
     // console.log(JSON.parse(options.mainComment))
     this.setData({
       mainComment: JSON.parse(options.mainComment),
-      thirdSessionKey: options.thirdSessionKey
     })
 
     wx.request({
@@ -68,6 +66,17 @@ Page({
         })
       },
     })
+    if (that.data.thirdSessionKey == '') {
+      wx.getStorage({
+        key: 'thirdSessionKey',
+        success: function (res) {
+          // console.log(res.data)
+          that.setData({
+            thirdSessionKey: res.data
+          })
+        },
+      })
+    }
   },
 
   /**
@@ -147,9 +156,10 @@ Page({
         if (res.data != '') {
           console.log(res.data)
           let sonComments = that.data.sonComments
-
+          console.log(sonComments.concat(res.data))
           that.setData({
-            sonComments: sonComments.push(res.data)
+            sonComments: sonComments.concat(res.data),
+            commentIndex: that.data.commentIndex + 10
           })
           wx.hideLoading()
         } else {
@@ -189,48 +199,69 @@ Page({
   },
   publishSonComment: function() {
     let that = this
-    let rawData = JSON.parse(this.data.rawData)
-    console.log(that.data.thirdSessionKey)
-    console.log(rawData.nickName)
-    console.log(rawData.avatarUrl)
-    console.log(that.data.mainComment.id)
-    console.log(that.data.pubSonComment)
-    wx.request({
-      url: 'https://www.xqdiary.top/sp/commentsReply',
-      data: {
-        thirdSessionKey: that.data.thirdSessionKey,
-        content: that.data.pubSonComment,
-        photoId: that.data.photoId,
-        fromURL: rawData.avatarUrl,
-        fromname: rawData.nickName,
-        commentId: that.data.mainComment.id
-      },
-      success: (res) => {
-        console.log(res.data)
-        if (res.data == 1) {
-          this.reloadCommnets()
-          that.setData({
-        pubSonComment:""
-          })
-        } else {
-          if (res.data = -1) {
-            wx.showToast({
-              title: '发送失败',
-              icon: "none",
-              duration: 1300
-            })
-          } else {
-            wx.showToast({
-              title: '请登陆进行评论',
-              icon: "none",
-              duration: 1300
-            })
-          }
-        }
-      },
-      fail: (res) => {
+    if(this.data.rawData=='')
+    {
+      wx.showToast({
+        title: '请登陆进行评论',
+        icon: 'none',
+        duration: 1300
+      })
+    }
+    else{
+      if(that.data.pubSonComment!='')
+      {
+        let rawData = JSON.parse(this.data.rawData)
+        console.log(that.data.thirdSessionKey)
+        console.log(rawData.nickName)
+        console.log(rawData.avatarUrl)
+        console.log(that.data.mainComment.id)
+        console.log(that.data.pubSonComment)
+        wx.request({
+          url: 'https://www.xqdiary.top/sp/commentsReply',
+          data: {
+            thirdSessionKey: that.data.thirdSessionKey,
+            content: that.data.pubSonComment,
+            photoId: that.data.photoId,
+            fromURL: rawData.avatarUrl,
+            fromname: rawData.nickName,
+            commentId: that.data.mainComment.id
+          },
+          success: (res) => {
+            console.log(res.data)
+            if (res.data == 1) {
+              this.reloadCommnets()
+              that.setData({
+                pubSonComment: ""
+              })
+            } else {
+              if (res.data = -1) {
+                wx.showToast({
+                  title: '发送失败',
+                  icon: "none",
+                  duration: 1300
+                })
+              } else {
+                wx.showToast({
+                  title: '请登陆进行评论',
+                  icon: "none",
+                  duration: 1300
+                })
+              }
+            }
+          },
+          fail: (res) => {
 
+          }
+        })
       }
-    })
+      else
+      {
+        wx.showToast({
+          title: '评论不能为空',
+          icon: "none",
+          duration: 1300
+        })
+      }
+    }
   }
 })
