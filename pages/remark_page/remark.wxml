@@ -1,10 +1,10 @@
 <view class="whole">
   <view class="picture">
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swipe_container" circular='{{circular}}'>
-      <block wx:for="{{imgUrls}}" wx:key="image">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swipe_container" circular='{{circular}}' style="height:{{imgheights[current]}}rpx;" bindchange="bindchange">
+      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
         <swiper-item>
           <!-- 添加展示图片功能 -->
-          <image src="{{item}}" class="slide-image" mode="scaleToFill" bindtap='previewImage' />
+          <image src="{{item}}" data-id='{{index}}' class="slide-image" mode="widthFix" bindtap='previewImage' bindload="imageLoad" />
         </swiper-item>
       </block>
     </swiper>
