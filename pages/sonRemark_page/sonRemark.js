@@ -34,7 +34,7 @@ Page({
       success: (res) => {
         // console.log(res.data)
         that.setData({
-          sonComments:res.data,
+          sonComments: res.data,
           commentIndex: that.data.commentIndex + 10
         })
       },
@@ -69,7 +69,7 @@ Page({
     if (that.data.thirdSessionKey == '') {
       wx.getStorage({
         key: 'thirdSessionKey',
-        success: function (res) {
+        success: function(res) {
           // console.log(res.data)
           that.setData({
             thirdSessionKey: res.data
@@ -102,7 +102,7 @@ Page({
     wx.stopPullDownRefresh()
   },
 
-  reloadCommnets: function () {
+  reloadCommnets: function() {
     let that = this
     that.setData({
       commentIndex: 0,
@@ -144,7 +144,7 @@ Page({
     this.loadMoreComments()
   },
 
-  loadMoreComments: function () {
+  loadMoreComments: function() {
     let that = this
     wx.request({
       url: 'https://www.xqdiary.top/sp/getSonComments',
@@ -199,37 +199,42 @@ Page({
   },
   publishSonComment: function() {
     let that = this
-    if(this.data.rawData=='')
-    {
+    if (this.data.rawData == '') {
       wx.showToast({
         title: '请登陆进行评论',
         icon: 'none',
         duration: 1300
       })
-    }
-    else{
-      if(that.data.pubSonComment!='')
-      {
+    } else {
+      if (that.data.pubSonComment != '') {
+        wx.showLoading({
+          title: '发送中',
+        })
         let rawData = JSON.parse(this.data.rawData)
-        console.log(that.data.thirdSessionKey)
-        console.log(rawData.nickName)
-        console.log(rawData.avatarUrl)
-        console.log(that.data.mainComment.id)
-        console.log(that.data.pubSonComment)
+        // console.log(that.data.thirdSessionKey)
+        // console.log(rawData.nickName)
+        // console.log(rawData.avatarUrl)
+        // console.log(that.data.mainComment.id)
+        // console.log(that.data.pubSonComment)
         wx.request({
           url: 'https://www.xqdiary.top/sp/commentsReply',
           data: {
             thirdSessionKey: that.data.thirdSessionKey,
             content: that.data.pubSonComment,
-            photoId: that.data.photoId,
             fromURL: rawData.avatarUrl,
             fromname: rawData.nickName,
             commentId: that.data.mainComment.id
           },
           success: (res) => {
-            console.log(res.data)
+            wx.hideLoading()
+            // console.log(res.data)
             if (res.data == 1) {
-              this.reloadCommnets()
+              this.afterPublishRefresh()
+              wx.showToast({
+                title: '发送成功',
+                icon: 'none',
+                duration: 1200
+              })
               that.setData({
                 pubSonComment: ""
               })
@@ -250,12 +255,10 @@ Page({
             }
           },
           fail: (res) => {
-
-          }
+            wx.hideLoading()
+          },
         })
-      }
-      else
-      {
+      } else {
         wx.showToast({
           title: '评论不能为空',
           icon: "none",
@@ -263,5 +266,26 @@ Page({
         })
       }
     }
+  },
+  afterPublishRefresh: function() {
+    let that = this
+    console.log(that.data.mainComment.id)
+    wx.request({
+      url: 'https://www.xqdiary.top/sp/afterPublishRefresh',
+      data: {
+        commentId: that.data.mainComment.id
+      },
+      success: (res) => {
+        // console.log(res.data)
+        // console.log(that.data.sonComments.concat(res.data))
+        let sonComment = that.data.sonComments.concat(res.data)
+        that.setData({
+          sonComments: sonComment
+        })
+      },
+      fail: (res) => {
+
+      }
+    })
   }
 })

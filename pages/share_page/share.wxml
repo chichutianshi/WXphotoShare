@@ -24,7 +24,7 @@
 
     <view class="location">
       <image class="btn_location" bindtap='getlocation' src='../../resources/location.png'></image>
-      <textarea class="show_location"  disabled='true' auto-height='false' placeholder='{{location}}'>
+      <textarea class="show_location"  disabled='true' auto-height='false' placeholder='{{locationTopic}}'>
       </textarea>
     </view>
 

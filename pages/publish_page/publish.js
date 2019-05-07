@@ -16,13 +16,13 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     console.log('onPullDownRefresh', '下拉刷新....');
     this.reloadData()
     wx.stopPullDownRefresh()
   },
 
-  reloadData:function(){
+  reloadData: function() {
     let that = this
     this.setData({
       items: [],
@@ -38,7 +38,7 @@ Page({
             selectRow: that.data.selectRow,
             thirdSessionKey: res.data
           },
-          success: function (res) {
+          success: function(res) {
             let notes = res.data
             //console.log(notes)
             let photoURLs = notes[0].photoURL
@@ -74,26 +74,26 @@ Page({
 
 
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
     wx.getStorage({
       key: 'thirdSessionKey',
-      success: function (res) {
+      success: function(res) {
         wx.request({
           url: 'https://www.xqdiary.top/sp/manageSend',
           data: {
-            selectRow:that.data.selectRow,
+            selectRow: that.data.selectRow,
             thirdSessionKey: res.data
           },
-          success: function (res) {
+          success: function(res) {
             let notes = res.data
             //console.log(notes)
             let photoURLs = notes[0].photoURL
             //console.log(photoURLs)
-            for (var ck = 0; ck < notes.length;ck++){           
+            for (var ck = 0; ck < notes.length; ck++) {
               let photoURLs = notes[ck].photoURL;
               that.data.items.push({
-                imgUrls:photoURLs,
+                imgUrls: photoURLs,
                 instruction: notes[ck].instruction,
                 avatarURL: notes[ck].avatarURL,
                 nickname: notes[ck].nickname,
@@ -108,18 +108,18 @@ Page({
               })
             }
             that.setData({
-              selectRow:that.data.selectRow+6,
+              selectRow: that.data.selectRow + 6,
               items: that.data.items,
-              imgUrls:that.data.imgUrls
+              imgUrls: that.data.imgUrls
             });
             console.log(that.data.imgUrls)
           },
         })
       },
-      fail:function(res){
+      fail: function(res) {
         console.log("没有登陆")
       }
-    })   
+    })
 
 
     // for (var i = 0; i < 4; i++) {
@@ -128,15 +128,15 @@ Page({
     //     isTouchMove: false //默认隐藏删除
     //   })
     // }
-  //   this.setData({
-  //     items: this.data.items
-  //   });
-   },
+    //   this.setData({
+    //     items: this.data.items
+    //   });
+  },
 
   //手指触摸动作开始 记录起点X坐标
-  touchstart: function (e) {
+  touchstart: function(e) {
     //开始触摸时 重置所有删除
-    this.data.items.forEach(function (v, i) {
+    this.data.items.forEach(function(v, i) {
       if (v.isTouchMove) //只操作为true的
         v.isTouchMove = false;
     })
@@ -148,7 +148,7 @@ Page({
   },
 
   //滑动事件处理
-  touchmove: function (e) {
+  touchmove: function(e) {
     var that = this,
       index = e.currentTarget.dataset.index, //当前索引
       startX = that.data.startX, //开始X坐标
@@ -161,10 +161,10 @@ Page({
         X: startX,
         Y: startY
       }, {
-          X: touchMoveX,
-          Y: touchMoveY
-        });
-    that.data.items.forEach(function (v, i) {
+        X: touchMoveX,
+        Y: touchMoveY
+      });
+    that.data.items.forEach(function(v, i) {
       v.isTouchMove = false
 
       //滑动超过30度角 return
@@ -193,7 +193,7 @@ Page({
 
   */
 
-  angle: function (start, end) {
+  angle: function(start, end) {
     var _X = end.X - start.X,
       _Y = end.Y - start.Y
 
@@ -202,12 +202,12 @@ Page({
   },
 
   //删除事件
-  del: function (e) {
+  del: function(e) {
     let that = this
     wx.showModal({
       title: '提示',
       content: '确定删除吗?',
-      success: function (res) { 
+      success: function(res) {
         if (res.confirm) {
           // console.log('用户点击确定')
           console.log(e.currentTarget.dataset.photoid)
@@ -218,9 +218,9 @@ Page({
                 url: 'https://www.xqdiary.top/sp/delSend',
                 data: {
                   photoId: e.currentTarget.dataset.photoid,
-                  thirdSessionKey:res.data
+                  thirdSessionKey: res.data
                 },
-                success: function (res2) {
+                success: function(res2) {
                   if (res2.data == 1) {
                     that.data.items.splice(e.currentTarget.dataset.index, 1)
                     that.setData({
@@ -244,8 +244,8 @@ Page({
               })
             },
           })
-          
-          
+
+
         } else if (res.cancel) {
           // console.log('用户点击取消')
         }
@@ -256,7 +256,7 @@ Page({
 
   //展示图片
   //转详情页
-  previewImage: function (e) {
+  previewImage: function(e) {
     // console.log(e.currentTarget.dataset.index)
     // wx.previewImage({
     //   current: this.data.imgUrls[e.currentTarget.dataset.index],
@@ -265,19 +265,26 @@ Page({
     //   // 需要预览的图片http链接列表		
     // })
     let index = e.currentTarget.dataset.index
-    console.log("序号："+index)
+    console.log("序号：" + index)
     console.log(this.data.items)
     console.log(this.data.items[index].instruction)
     wx.request({
       url: 'https://www.xqdiary.top/sp/GetPhotoDetail',
-     // url: 'https://www.xqdiary.top/sp/GetPhotoDetail',
+      // url: 'https://www.xqdiary.top/sp/GetPhotoDetail',
       data: {
         photoId: e.currentTarget.dataset.photoid
       },
       success: (res) => {
-        wx.navigateTo({
-          url: '../remark_page/remark?photoUrls=' + JSON.stringify(res.data.photoUrls) + "&photoId=" + this.data.items[index].photoid + "&introduce=" + this.data.items[index].instruction + "&avatarURL=" + this.data.items[index].avatarURL + "&nickname=" + this.data.items[index].nickname + "&likeNum=" + this.data.items[index].likeNum + "&like=" + this.data.items[index].like,
-        })
+        if (this.data.items[index].location != undefined) {
+          wx.navigateTo({
+            url: '../remark_page/remark?photoUrls=' + JSON.stringify(res.data.photoUrls) + "&photoId=" + this.data.items[index].photoid + "&introduce=" + this.data.items[index].instruction + "&avatarURL=" + this.data.items[index].avatarURL + "&nickname=" + this.data.items[index].nickname + "&likeNum=" + this.data.items[index].likeNum + "&like=" + this.data.items[index].like + "&location=" + this.data.items[index].location
+          })
+        } else {
+          wx.navigateTo({
+            url: '../remark_page/remark?photoUrls=' + JSON.stringify(res.data.photoUrls) + "&photoId=" + this.data.items[index].photoid + "&introduce=" + this.data.items[index].instruction + "&avatarURL=" + this.data.items[index].avatarURL + "&nickname=" + this.data.items[index].nickname + "&likeNum=" + this.data.items[index].likeNum + "&like=" + this.data.items[index].like + "&location=" + "未知"
+          })
+        }
+
       },
       fail: (res) => {
 
@@ -287,19 +294,19 @@ Page({
   },
 
   /**
-  * 页面上拉触底事件的处理函数
-  */
-  onReachBottom: function () {
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
     wx.showLoading({
       title: '加载中...',
     })
     this.loadMore()
   },
-  loadMore:function(){
+  loadMore: function() {
     var that = this
     wx.getStorage({
       key: 'thirdSessionKey',
-      success: function (res) {
+      success: function(res) {
         wx.request({
           //url: 'https://www.xqdiary.top/sp/manageSend',
           url: 'https://www.xqdiary.top/sp/manageSend',
@@ -307,7 +314,7 @@ Page({
             selectRow: that.data.selectRow,
             thirdSessionKey: res.data
           },
-          success: function (res) {
+          success: function(res) {
             if (res.data != '') {
               let notes = res.data
               //console.log(temp)
@@ -347,7 +354,7 @@ Page({
                 duration: 2000
               })
             }
-            
+
           },
         })
       },

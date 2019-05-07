@@ -48,9 +48,17 @@ Page({
         },
         success: (res) => {
           //console.log(res.data.photoUrls)
-          wx.navigateTo({
-            url: '../remark_page/remark?photoUrls=' + JSON.stringify(res.data.photoUrls) + "&photoId=" + this.data.note[index].photoId + "&introduce=" + this.data.note[index].instruction + "&avatarURL=" + this.data.note[index].avatarURL + "&nickname=" + this.data.note[index].nickname + "&likeNum=" + this.data.note[index].likeNum + "&like=" + this.data.note[index].like,
-          })
+          // console.log(this.data.note[index].location)
+          if (this.data.note[index].location != undefined) {
+            wx.navigateTo({
+              url: '../remark_page/remark?photoUrls=' + JSON.stringify(res.data.photoUrls) + "&photoId=" + this.data.note[index].photoId + "&introduce=" + this.data.note[index].instruction + "&avatarURL=" + this.data.note[index].avatarURL + "&nickname=" + this.data.note[index].nickname + "&likeNum=" + this.data.note[index].likeNum + "&like=" + this.data.note[index].like + "&location=" + this.data.note[index].location
+            })
+          } else {
+            wx.navigateTo({
+              url: '../remark_page/remark?photoUrls=' + JSON.stringify(res.data.photoUrls) + "&photoId=" + this.data.note[index].photoId + "&introduce=" + this.data.note[index].instruction + "&avatarURL=" + this.data.note[index].avatarURL + "&nickname=" + this.data.note[index].nickname + "&likeNum=" + this.data.note[index].likeNum + "&like=" + this.data.note[index].like + "&location=" + "未知"
+            })
+          }
+
         },
         fail: (res) => {
 
@@ -94,13 +102,13 @@ Page({
             } else {
               wx.removeStorage({
                 key: 'thirdSessionKey',
-                success: function (res) {
+                success: function(res) {
                   wx.removeStorage({
                     key: 'rawData',
-                    success: function (res) { },
+                    success: function(res) {},
                   })
                 },
-                fail: function () {
+                fail: function() {
 
                 }
               })

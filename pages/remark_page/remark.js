@@ -26,7 +26,8 @@ Page({
     photoId: '',
     commentIndex: 0,
     pubComment: '',
-    thirdSessionKey: ''
+    thirdSessionKey: '',
+    location: ''
   },
 
   /**
@@ -49,6 +50,7 @@ Page({
       likeNum: options.likeNum,
       islike: options.like,
       photoId: options.photoId,
+      location: options.location
     })
     // console.log(that.data.thirdSessionKey)
     // console.log(options.like)
@@ -103,6 +105,7 @@ Page({
         },
       })
     }
+    // console.log(this.data.location)
   },
 
   /**
@@ -184,7 +187,7 @@ Page({
           let comments = res.data
           let mainComments = that.data.mainComments.concat(comments)
           // console.log(that.data.mainComments.concat(comments))
-         
+
           that.setData({
             mainComments: mainComments,
             commentIndex: that.data.commentIndex + 10
@@ -258,6 +261,9 @@ Page({
       })
     } else {
       if (that.data.pubComment != '') {
+        wx.showLoading({
+          title: '发送中',
+        })
         let rawData = JSON.parse(this.data.rawData)
         // console.log(that.data.thirdSessionKey)
         // console.log(rawData.nickName)
@@ -274,9 +280,15 @@ Page({
             fromname: rawData.nickName
           },
           success: (res) => {
-            console.log(res.data)
+            wx.hideLoading()
+            // console.log(res.data)
             if (res.data == 1) {
-              this.reloadCommnets()
+              this.afterPublishRefresh()
+              wx.showToast({
+                title: '发送成功',
+                icon:'none',
+                duration:1200
+              })
               that.setData({
                 pubComment: ''
               })
@@ -297,20 +309,37 @@ Page({
             }
           },
           fail: (res) => {
-
+            wx.hideLoading()
           }
         })
-      }
-      else{
+      } else {
         wx.showToast({
           title: '评论不能为空',
-          icon:"none",
-          duration:1300
+          icon: "none",
+          duration: 1300
         })
       }
 
     }
 
+  },
+  afterPublishRefresh: function() {
+    let that = this
+    wx.request({
+      url: 'https://www.xqdiary.top/sp/afterPublishRefresh',
+      data: {
+        photoId: that.data.photoId
+      },
+      success: (res) => {
+        console.log(res.data)
+        that.setData({
+          mainComments:that.data.mainComments.concat(res.data)
+        })
+      },
+      fail: (res) => {
+
+      }
+    })
   }
 
 })
