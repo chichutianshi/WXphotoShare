@@ -4,11 +4,11 @@
     "pages/share_page/share",
     "pages/mine_page/mine",
     "pages/login_page/login",
+    "pages/photo_page/photo",
     "pages/remark_page/remark",
     "pages/publish_page/publish",
     "pages/sonRemark_page/sonRemark",
-    "pages/individual_page/individual",
-    "pages/photo_page/photo"
+    "pages/individual_page/individual"
   ],
   "tabBar": {
     "color": "#dddddd",
