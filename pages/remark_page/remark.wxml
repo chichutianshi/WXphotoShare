@@ -49,7 +49,7 @@
       <!-- 此为一条评论模板 -->
       <view class="remark_1">
         <view class="remark_1_author">
-          <image class="remark_1_photo" src="{{item.fromURL}}"></image>
+          <image class="remark_1_photo" bindtap='theirProduction' data-id='{{item.fromid}}' src="{{item.fromURL}}"></image>
           <view class="nameTime">
             <a class="remark_1_nickname">{{item.fromname}}</a>
             <text>{{text}}</text>

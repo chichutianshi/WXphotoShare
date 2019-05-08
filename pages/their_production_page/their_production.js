@@ -11,6 +11,7 @@ Page({
     duration: 1000,
     circular: true,
     selectRow: 0,
+    id:''
   },
 
   /**
@@ -22,115 +23,55 @@ Page({
     wx.stopPullDownRefresh()
   },
 
-  reloadData: function() {
-    let that = this
-    this.setData({
-      items: [],
-      selectRow: 0
-    })
-    wx.getStorage({
-      key: 'thirdSessionKey',
-      success: function(res) {
-        wx.request({
-          //url: 'https://www.xqdiary.top/sp/manageSend',
-          url: 'https://www.xqdiary.top/sp/manageSend',
-          data: {
-            selectRow: that.data.selectRow,
-            thirdSessionKey: res.data
-          },
-          success: function(res) {
-            let notes = res.data
-            //console.log(notes)
-            let photoURLs = notes[0].photoURL
-            //console.log(photoURLs)
-            for (var ck = 0; ck < notes.length; ck++) {
-              let photoURLs = notes[ck].photoURL;
-              that.data.items.push({
-                imgUrls: photoURLs,
-                instruction: notes[ck].instruction,
-                avatarURL: notes[ck].avatarURL,
-                nickname: notes[ck].nickname,
-                likeNum: notes[ck].likeNum,
-                photoid: notes[ck].photoId,
-                content: ck + " 向左滑动删除哦",
-                isTouchMove: false //默认隐藏删除
-              })
-
-              that.data.imgUrls.push({
-                imgUrls2: photoURLs,
-              })
-            }
-            that.setData({
-              selectRow: that.data.selectRow + 6,
-              items: that.data.items,
-              imgUrls: that.data.imgUrls
-            });
-            console.log(that.data.imgUrls)
-          },
-        })
-      },
-    })
-  },
+ 
 
 
 
   onLoad: function(options) {
+    var id = options.userid
     var that = this;
-    wx.getStorage({
-      key: 'thirdSessionKey',
-      success: function(res) {
-        wx.request({
-          url: 'https://www.xqdiary.top/sp/manageSend',
-          data: {
-            selectRow: that.data.selectRow,
-            thirdSessionKey: res.data
-          },
-          success: function(res) {
-            let notes = res.data
-            //console.log(notes)
-            let photoURLs = notes[0].photoURL
-            //console.log(photoURLs)
-            for (var ck = 0; ck < notes.length; ck++) {
-              let photoURLs = notes[ck].photoURL;
-              that.data.items.push({
-                imgUrls: photoURLs,
-                instruction: notes[ck].instruction,
-                avatarURL: notes[ck].avatarURL,
-                nickname: notes[ck].nickname,
-                likeNum: notes[ck].likeNum,
-                photoid: notes[ck].photoId,
-                content: ck + " 向左滑动删除哦",
-                isTouchMove: false //默认隐藏删除
-              })
-
-              that.data.imgUrls.push({
-                imgUrls2: photoURLs,
-              })
-            }
-            that.setData({
-              selectRow: that.data.selectRow + 6,
-              items: that.data.items,
-              imgUrls: that.data.imgUrls
-            });
-            console.log(that.data.imgUrls)
-          },
-        })
+    that.setData({
+      id:id
+    })
+    wx.request({
+      url: 'https://www.xqdiary.top/sp/lookOtherPro',
+      data: {
+        selectRow:that.data.selectRow,
+        userid:id
       },
-      fail: function(res) {
-        console.log("没有登陆")
-      }
+      success: function (res) {
+        //console.log(that.data.selectRow)
+        let notes = res.data
+        //console.log(notes)
+        //console.log("assad")
+        let photoURLs = JSON.stringify(notes[0].photoURL)
+        //console.log(photoURLs)
+        for (var ck = 0; ck < notes.length; ck++) {
+          let photoURLs = notes[ck].photoURL;
+          that.data.items.push({
+            imgUrls: photoURLs,
+            instruction: notes[ck].instruction,
+            avatarURL: notes[ck].avatarURL,
+            nickname: notes[ck].nickname,
+            likeNum: notes[ck].likeNum,
+            photoid: notes[ck].photoId,
+          })
+
+          that.data.imgUrls.push({
+            imgUrls2: photoURLs,
+          })
+        }
+        that.setData({
+          selectRow: that.data.selectRow + 6,
+          items: that.data.items,
+          imgUrls: that.data.imgUrls
+        });
+        console.log(that.data.imgUrls)
+      },
     })
 
 
-    // for (var i = 0; i < 4; i++) {
-    //   this.data.items.push({
-    //     content: i + " 向左滑动删除哦",
-    //     isTouchMove: false //默认隐藏删除
-    //   })
-    // }
-    //   this.setData({
-    //     items: this.data.items
-    //   });
+   
   },
 
   //手指触摸动作开始 记录起点X坐标
@@ -304,59 +245,51 @@ Page({
   },
   loadMore: function() {
     var that = this
-    wx.getStorage({
-      key: 'thirdSessionKey',
-      success: function(res) {
-        wx.request({
-          //url: 'https://www.xqdiary.top/sp/manageSend',
-          url: 'https://www.xqdiary.top/sp/manageSend',
-          data: {
-            selectRow: that.data.selectRow,
-            thirdSessionKey: res.data
-          },
-          success: function(res) {
-            if (res.data != '') {
-              let notes = res.data
-              //console.log(temp)
-              //var notes = that.data.items.concat(temp)
-              //console.log(notes)
-              //let photoURLs = notes[0].photoURL
-              //console.log(photoURLs)
-              for (var ck = 0; ck < notes.length; ck++) {
-                let photoURLs = notes[ck].photoURL;
-                that.data.items.push({
-                  imgUrls: photoURLs,
-                  instruction: notes[ck].instruction,
-                  avatarURL: notes[ck].avatarURL,
-                  nickname: notes[ck].nickname,
-                  likeNum: notes[ck].likeNum,
-                  photoid: notes[ck].photoId,
-                  content: ck + " 向左滑动删除哦",
-                  isTouchMove: false //默认隐藏删除
-                })
+    wx.request({
+      url: 'https://www.xqdiary.top/sp/lookOtherPro',
+      data: {
+        selectRow: that.data.selectRow,
+        userid: that.data.id
+      },
+      success: function (res) {
+        if (res.data != '') {
+          let notes = res.data
+          //console.log(temp)
+          //var notes = that.data.items.concat(temp)
+          //console.log(notes)
+          //let photoURLs = notes[0].photoURL
+          //console.log(photoURLs)
+          for (var ck = 0; ck < notes.length; ck++) {
+            let photoURLs = notes[ck].photoURL;
+            that.data.items.push({
+              imgUrls: photoURLs,
+              instruction: notes[ck].instruction,
+              avatarURL: notes[ck].avatarURL,
+              nickname: notes[ck].nickname,
+              likeNum: notes[ck].likeNum,
+              photoid: notes[ck].photoId,
+              
+            })
 
-                that.data.imgUrls.push({
-                  imgUrls2: photoURLs,
-                })
-              }
-              that.setData({
-                selectRow: that.data.selectRow + 6,
-                items: that.data.items,
-                imgUrls: that.data.imgUrls
-              });
-              wx.hideLoading()
-              console.log(that.data.imgUrls)
-            } else {
-              wx.hideLoading()
-              wx.showToast({
-                icon: 'none',
-                title: '到底了',
-                duration: 2000
-              })
-            }
-
-          },
-        })
+            that.data.imgUrls.push({
+              imgUrls2: photoURLs,
+            })
+          }
+          that.setData({
+            selectRow: that.data.selectRow + 6,
+            items: that.data.items,
+            imgUrls: that.data.imgUrls
+          });
+          wx.hideLoading()
+          console.log(that.data.imgUrls)
+        } else {
+          wx.hideLoading()
+          wx.showToast({
+            icon: 'none',
+            title: '到底了',
+            duration: 2000
+          })
+        }
       },
     })
   }
