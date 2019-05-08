@@ -6,7 +6,9 @@
     "pages/login_page/login",
     "pages/remark_page/remark",
     "pages/publish_page/publish",
-    "pages/sonRemark_page/sonRemark"
+    "pages/sonRemark_page/sonRemark",
+    "pages/individual_page/individual",
+    "pages/photo_page/photo"
   ],
   "tabBar": {
     "color": "#dddddd",

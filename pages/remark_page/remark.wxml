@@ -1,16 +1,16 @@
 <view class="whole">
-  <view class="picture">
+  <!-- <view class="picture">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swipe_container" circular='{{circular}}' style="height:{{imgheights[current]}}rpx;" bindchange="bindchange">
       <block wx:for="{{imgUrls}}" wx:key="{{index}}">
         <swiper-item>
-          <!-- 添加展示图片功能 -->
+          添加展示图片功能
           <image src="{{item}}" data-id='{{index}}' class="slide-image" mode="widthFix" bindtap='previewImage' bindload="imageLoad" />
         </swiper-item>
       </block>
     </swiper>
-  </view>
+  </view> -->
 
-  <view class="show_message">
+  <!-- <view class="show_message">
     <view class="outline">
       <text>{{instruction}}</text>
     </view>
@@ -31,7 +31,7 @@
         <a class="num_heart">{{likeNum}}</a>
       </view>
     </view>
-  </view>
+  </view> -->
 
   <view class="useColor">
     <view class="conts">

@@ -140,7 +140,12 @@ Page({
         })
       }
     })
-    
+  },
+
+  to_individual:function(){
+    wx.navigateTo({
+      url: '../individual_page/individual',
+    })
   },
 
   redirect: function() {

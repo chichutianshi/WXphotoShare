@@ -7,7 +7,7 @@
 </view>
 
 <view class="mine_functions">
-  <view class="mine_message" >
+  <view class="mine_message" bindtap='to_individual'>
     <view class="my_message">
       个人信息
     </view>

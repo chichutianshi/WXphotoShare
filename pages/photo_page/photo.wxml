@@ -1,0 +1,23 @@
+<view class="whole">
+  <view class="picture">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swipe_container" circular='{{circular}}' style="height:{{imgheights[current]}}rpx;" bindchange="bindchange">
+      <block wx:for="{{photoUrls}}" wx:key="{{index}}">
+        <swiper-item>
+          <!-- 添加展示图片功能 -->
+          <image src="{{item}}" data-id='{{index}}' class="slide-image" mode="aspectFit" bindtap='previewImage' bindload="imageLoad" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class='low_bar'>
+    <view class="comments_" bindtap='to_remark'>
+      <image src="../../resources/comment.png" class="comments_icon"></image>
+    </view>
+    <view class="share_">
+      <image src="../../resources/share_remark.png" class="share_icon"></image>
+    </view>
+    <view class="heart_">
+      <image src="../../resources/heart.png" class="heart_icon"></image>
+    </view>
+  </view>
+</view>

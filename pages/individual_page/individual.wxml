@@ -1,0 +1,38 @@
+<view class="area_head">
+<image src="{{avatar}}" class="head"></image>
+</view>
+
+<view class="area_message">
+  <view class="area_name">
+    <text>昵称</text>
+    <input class="change_name" value="{{nickname}}" />
+  </view>
+  <view class="area_gender">
+    <text>性别</text>
+    <view class="btn_gender">
+      <view class="btn_male">♂</view>
+      <view class="btn_female">♀</view>
+      <view class="btn_unknown">👽</view>
+    </view>
+  </view>
+  <view class="area_phone">
+    <text>电话</text>
+    <input class="change_phone" value="{{phone}}" />
+  </view>
+  <view class="area_province">
+    <text>省份</text>
+    <input class="change_province" value="{{province}}" />
+  </view>
+  <view class="area_city">
+    <text>城市</text>
+    <input class="change_city" value="{{city}}" />
+  </view>
+  <!-- <view class="area_mail">
+    <text>邮箱</text>
+    <input class="change_mail" value="{{topic}}" />
+  </view> -->
+  <!-- <view class="area_career">
+    <text>职业</text>
+    <input class="change_career" value="{{topic}}" />
+  </view> -->
+</view>

@@ -44,7 +44,7 @@ page {
 .mine_message{
   display: flex;
   align-items: center;
-  height: 20%;
+  height: 25%;
   width: 100%;
   border-bottom: 1px solid #ccc;
   /* border: 1rpx solid black; */
@@ -63,7 +63,7 @@ page {
 .mine_publish{
   display: flex;
   align-items: center;
-  height: 20%;
+  height: 25%;
   width: 100%;
   border-bottom: 1px solid #ccc;
   /* border: 1rpx solid black; */

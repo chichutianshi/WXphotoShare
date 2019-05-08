@@ -62,21 +62,14 @@ Page({
   onLoad: function(options) {
     let that = this
     // console.log(options.introduce)
-    let Urls = JSON.parse(options.photoUrls)
-    for (let i = 0; i < Urls.length; i++) {
-      Urls[i] = "https://www.xqdiary.top/loadPic/" + options.photoId + "/" + Urls[i]
-      //Urls[i] = "https://www.xqdiary.top/loadPic/" + options.photoId+"/"+Urls[i]
-    }
+    // let Urls = JSON.parse(options.photoUrls)
+    // for (let i = 0; i < Urls.length; i++) {
+    //   Urls[i] = "https://www.xqdiary.top/loadPic/" + options.photoId + "/" + Urls[i]
+    //   //Urls[i] = "https://www.xqdiary.top/loadPic/" + options.photoId+"/"+Urls[i]
+    // }
     // console.log(Urls[0])
     this.setData({
-      imgUrls: Urls,
-      instruction: options.introduce,
-      avatarURL: options.avatarURL,
-      nickname: options.nickname,
-      likeNum: options.likeNum,
-      islike: options.like,
       photoId: options.photoId,
-      location: options.location
     })
     // console.log(that.data.thirdSessionKey)
     // console.log(options.like)
