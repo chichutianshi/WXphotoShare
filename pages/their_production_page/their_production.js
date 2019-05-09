@@ -29,6 +29,7 @@ Page({
 
   onLoad: function(options) {
     var id = options.userid
+    console.log(id)
     var that = this;
     that.setData({
       id:id

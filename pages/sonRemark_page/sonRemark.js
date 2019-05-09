@@ -276,11 +276,10 @@ Page({
         commentId: that.data.mainComment.id
       },
       success: (res) => {
-        // console.log(res.data)
+        console.log(res.data)
         // console.log(that.data.sonComments.concat(res.data))
-        let sonComment = that.data.sonComments.concat(res.data)
         that.setData({
-          sonComments: sonComment
+          sonComments: res.data
         })
       },
       fail: (res) => {

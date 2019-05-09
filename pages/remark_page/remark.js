@@ -352,7 +352,7 @@ Page({
       success: (res) => {
         console.log(res.data)
         that.setData({
-          mainComments:that.data.mainComments.concat(res.data)
+          mainComments:res.data
         })
       },
       fail: (res) => {
