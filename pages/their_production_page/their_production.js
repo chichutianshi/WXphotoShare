@@ -14,19 +14,6 @@ Page({
     id:''
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-    console.log('onPullDownRefresh', '下拉刷新....');
-    this.reloadData()
-    wx.stopPullDownRefresh()
-  },
-
- 
-
-
-
   onLoad: function(options) {
     var id = options.userid
     console.log(id)
@@ -247,7 +234,7 @@ Page({
   loadMore: function() {
     var that = this
     wx.request({
-      url: 'https://www.xqdiary.top/sp/lookOtherPro',
+      url: 'https://www.xqdiary.top/sp/loadMorePro',
       data: {
         selectRow: that.data.selectRow,
         userid: that.data.id
