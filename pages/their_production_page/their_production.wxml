@@ -5,7 +5,7 @@
 
 <view class="all_publish">
   <!-- <block wx:for="{{note}}" wx:key=""> -->
-  <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="">
+  <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}"  wx:for="{{items}}" wx:key="">
     <view class="content" data-photoid='{{item.photoid}}' data-index="{{index}}" bindtap='previewImage'>
     <!-- star -->
 

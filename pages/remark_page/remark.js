@@ -80,7 +80,7 @@ Page({
         commentIndex: this.data.commentIndex
       },
       success: (res) => {
-        //console.log(res.data)
+        console.log(res.data)
         that.setData({
           mainComments: res.data,
           commentIndex: that.data.commentIndex + 10
@@ -364,6 +364,7 @@ Page({
 
   theirProduction:function(e){
     var userid = e.currentTarget.dataset.id
+    console.log(userid)
     wx.navigateTo({
       url: '../their_production_page/their_production?userid='+userid,
     })
