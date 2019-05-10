@@ -5,6 +5,7 @@
   overflow: hidden;
   border-radius: 50%;
   margin: 30px 295rpx 25rpx 295rpx;
+  background-color: rgb(224, 224, 224);
 }
 
 .wx_name {

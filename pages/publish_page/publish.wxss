@@ -53,6 +53,7 @@ page {
 
 .content {
   /* border: 1rpx solid red; */
+  /* border: 1px solid rgb(230, 230, 230); */
   background-color: white;
   border-radius: 30rpx;
   width: 100%;
@@ -70,6 +71,7 @@ page {
 
 .swipe_container {
   /* border: 1rpx solid blue; */
+  background-color: white;
   border-radius: 30rpx;
   width: 100%;
   margin-left: -1%;
