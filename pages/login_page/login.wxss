@@ -6,7 +6,13 @@
   border-radius: 50%;
   margin: 30px 295rpx 25rpx 295rpx;
 }
-.confirm{
+
+.wx_name {
+  font-weight: 500;
+  font-family: microsoft yahei;
+}
+
+.confirm {
   width: 80%;
   height: 80rpx;
   display: flex;
@@ -15,6 +21,7 @@
   background-color: rgba(255, 166, 0, 0.979);
   margin: 30px 10% 30px 10%;
 }
-.container{
-  margin-top:30%;
+
+.container {
+  margin-top: 30%;
 }

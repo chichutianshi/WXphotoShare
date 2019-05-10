@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl: '../../resources/mine_green.jpg',
+    avatarUrl: '../../resources/mine_grey.jpg',
     nickname: '授权登陆',
     thirdSessionKey: ''
   },
@@ -183,7 +183,7 @@ Page({
                 }
               })
               that.setData({
-                avatarUrl: '../../resources/mine_green.jpg',
+                avatarUrl: '../../resources/mine_grey.jpg',
                 nickname: '授权登陆',
               })
               wx.showToast({

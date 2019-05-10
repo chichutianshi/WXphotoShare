@@ -16,7 +16,8 @@ Page({
     instruction: '',
     nickname: '',
     islike: '',
-    index: ''
+    index: '',
+    text:'\n'
   },
   previewImage: function (e) {
     // console.log(e.currentTarget.dataset.index)

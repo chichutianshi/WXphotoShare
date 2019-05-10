@@ -1,15 +1,15 @@
 <view class="container">
 
   <view style='margin:10rpx auto;text-align:center'>
-    <image src="../../resources/mine_green.jpg" class="logo"></image>
+    <image src="../../resources/logo_standby_2jpg.png" class="logo"></image>
   </view>
 
-  <view style='text-align:center'>
-    分享瞬间
+  <view style='text-align:center' class="wx_name">
+    乐 享 橙 图
   </view>
 
   <button class="confirm" open-type='getUserInfo' bindgetuserinfo='bindGetUserInfo'>
-    确认授权登录      
+    确 认 授 权 登 录      
   </button>
   
 </view>

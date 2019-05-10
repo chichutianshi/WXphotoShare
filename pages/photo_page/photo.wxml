@@ -1,14 +1,35 @@
 <view class="whole">
   <view class="picture">
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swipe_container" circular='{{circular}}' style="height:{{imgheights[current]}}rpx;" >
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swipe_container" circular='{{circular}}' style="height:{{imgheights[current]}}rpx;">
       <block wx:for="{{photoUrls}}" wx:key="{{index}}">
         <swiper-item>
           <!-- 添加展示图片功能 -->
-          <image src="{{item}}" data-id='{{index}}' class="slide-image" mode="aspectFit" bindtap='previewImage'/>
+          <image src="{{item}}" data-id='{{index}}' class="slide-image" mode="aspectFit" bindtap='previewImage' />
         </swiper-item>
       </block>
     </swiper>
   </view>
+
+  <view class="show_message">
+    <view class="outline">
+      <text>{{instruction}}</text>
+    </view>
+    <view class="location_">
+      <text>位置：</text>
+      <view class="locaContent">
+        <text>{{location}}</text>
+      </view>
+    </view>
+    <view class="author">
+      <view class="photoName">
+        <image class="photo" src="{{avatarURL}}"></image>
+        <a class="nickname">{{nickname}}</a>
+      </view>
+    </view>
+  </view>
+  <text>{{text}}</text>
+  <text>{{text}}</text>
+  <!-- <text>{{text}}</text> -->
   <view class='low_bar'>
     <view class="comments_" bindtap='to_remark'>
       <image src="../../resources/comment.png" class="comments_icon"></image>
