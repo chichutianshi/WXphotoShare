@@ -352,7 +352,8 @@ Page({
       success: (res) => {
         console.log(res.data)
         that.setData({
-          mainComments:res.data
+          mainComments:res.data,
+          commentIndex:res.data.length
         })
       },
       fail: (res) => {
