@@ -13,7 +13,7 @@ Page({
     thirdSessionKey: '',
     introduce: '',
     location: '',
-    locationTopic:'点击左侧分享你的位置',
+    locationTopic:'点击左侧分享拍摄位置',
     photoId: '',
   },
 
@@ -167,6 +167,11 @@ Page({
               }
               if (obj["status"] == -1) {
                 console.log("faii")
+                wx.showToast({
+                  title: '第'+i+'张审核未通过',
+                  duration:1000,
+                  icon:'none'
+                })
               }
             },
             fail: (res) => {
@@ -177,7 +182,7 @@ Page({
               if (i == uploaderNum) {
                 wx.hideLoading()
                 wx.showToast({
-                  title: '上传成功',
+                  title: '上传完成',
                   duration: 1500,
                   mask: 'false'
                 })

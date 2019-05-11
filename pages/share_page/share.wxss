@@ -164,6 +164,7 @@ page {
   /* border: 1rpx solid black; */
   width: 77%;
   height: 70rpx;
+  font-size: 35rpx;
 }
 
 .btns {
